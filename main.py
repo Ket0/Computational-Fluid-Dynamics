@@ -6,7 +6,7 @@
 ##
 ## Author : Stefan Eickholz
 ## Datum:   11.06.2018
-## Ort:     Potsdam
+## Ort: 	Potsdam
 ## Sprache: Python
 ## Version: 3.6.1
 ##
@@ -20,22 +20,50 @@ import time
 import node
 import grid
 
-
+class Eingabe(object):
+	def __init__(self):
+		self.machZahl = 0.1
+		self.charL = 0.1
+		self.vx = 0.00730365
+		self.vy = 0
+		self.dichte = 1.225
+		self.dynamischZa = 1.7894e-05
+		# Gitter
+		self.dX = 2.5
+		self.dY = 0.41 
+		self.abstand = 0.015
+		# Initialisierungsdaten
+		self.initVX =0.00730365
+		self.initVY = 0
 
 print('main.py starten.')
 print('\nProgrammstart\n') 
 
-
+print('Pre-Processing')
 # Pre-Processing
 
 # Erzeuge Eingabe-Objekt
+#
+#
+oE = Eingabe()
+
 # Erzeuge Ausgabe-Objekt
 # Erzeuge Zeit-Objekt
 # Erzeuge Ausgabe-Objekt
 
+
+abstand = 0.015
+dX = 2.5
+dY = 0.41 
+
 # Erzeuge Gitter-Objekt
+#
+# (Eingabe, par_abstand, par_xK, par_yK):
+# mN = grid.Gitter(Eingabe_obj, Eingabe_obj.abstand, Eingabe_obj.dX, Eingabe_obj.dY)
+mN = grid.Gitter(par_abstand=abstand, par_xK=dX, par_yK=dY)
 #  - grid.generiereGitter()
 #  - grid.distanz()
+
 
 #  - grid.punkte() -> Punkte in Sequenz einfuegen 
 #    alle Punkte des Gitter sind hier gespeichert 
@@ -58,8 +86,8 @@ meineKnotenliste = []
 # Zahlvariable
 i=0
 
-print('Starte Hauptschleife')
-while(i<2):
+print('\nStarte Hauptschleife\n')
+while(i<1):
 	
 	print('Transportschritt')
 	# Wende auf alle Knoten den Transportschritt an
@@ -78,5 +106,5 @@ while(i<2):
 
 
 #Post-Processing
-
+print('\nPost-Processing\n')
 print('\nProgrammende')
