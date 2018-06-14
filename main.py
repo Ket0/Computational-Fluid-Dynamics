@@ -17,8 +17,10 @@
 ## 
 
 import time
+import numpy as np
 import node
 import grid
+
 
 class Eingabe(object):
 	def __init__(self):
@@ -35,6 +37,16 @@ class Eingabe(object):
 		# Initialisierungsdaten
 		self.initVX =0.00730365
 		self.initVY = 0
+
+"""
+# Druck muss berechnet werden
+cs_ = sqrt(u0x*u0y + u0y*u0y) / machZahl
+initialisierungsDruck = cs*cs*rho
+# Weiterhin berechnet wird
+xi = 
+Zeitschritt = 
+omega = 
+"""
 
 print('main.py starten.')
 print('\nProgrammstart\n') 
