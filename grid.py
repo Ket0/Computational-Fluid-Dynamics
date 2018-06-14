@@ -9,7 +9,7 @@ print('gitter.py importiert.')
 
 2D
 
-Aufbau des Gitters bzw. des Kanals ohne Hinderniss
+Aufbau des Gitters bzw. des Kanals ohne Hindernis
 
 E=Einlass
 A=Auslass
