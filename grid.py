@@ -9,7 +9,7 @@ print('gitter.py importiert.')
 
 2D
 
-Aufbau des Gitters bzw. des Kanals ohne Hindernis
+Aufbau des Gitters bzw. des Kanals ohne Hinderniss
 
 E=Einlass
 A=Auslass
@@ -118,8 +118,22 @@ Wand = W
 		# imin=0
 		# imax=0
 		# ny=anzahl_y_knoten-1
+		a=0 
+		b=0
+		# Knoten in x-Richtung
+		kx = par_xK
+		# Knoten in y-Richtung
+		ky = par_yK
 
 		# Einlass
+		# unten link = Knoten Null = Wandknoten
+		seq_Wand_0.appen( Wandknoten(0, 0) )
+
+		# Einlass
+		while():
+			seq_Einlass.append( Flussknoten() )
+
+
 		# Grauknoten
 
 

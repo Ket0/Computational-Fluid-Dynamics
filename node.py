@@ -14,7 +14,8 @@ class Knotentyp(enum.Enum):
 
 # Wurzel der Vererbungshierachie
 # 
-# Knoten
+# Vererbe Interface Knoten an Subknotentypen
+# Wurzelknoten/Basisklasse
 class node (object):
 	def __init__(self):
 	# def __init__(par_druck, par_init_vx, par_init_vy, par_rho, par_cs, par_xi, par_omega, par_u0x, par_u0y, par_eta, par_abstand, par_charL):
@@ -56,28 +57,24 @@ class node (object):
 	def kalkuliereErgebnis():
 		pass
 
-# Vererbe Interface Knoten an Subknotentypen
+# Subknoten
 class Fluidknoten(node):
 	def __init__():
 		pass
-
-
+# Wandknoten
 class Wandknoten(node):
 	def __init__(xKoord, yKoord, typ=Knotentyp(2) ):
-		pass
-
-# myWandknoten = Wandknoten(0, 50)
-# x=0
-# myList_kL=[]
-
-# while(x<10):
-# 	myList_kL.append(Wandknoten(0+x, 0))
-# 	print('Knoten: ', myList_kL[x])
-# 	x=x+1
-
+		self.xKoord = xKoord
+		self.yKoord = yKoord
+		
 # Einlass und Auslass vom Stroemungskanal
-class Flussknoten(node):
-	def __init__():
-		pass
-
+class Flussknoten_Einlass(node):
+	def __init__(xKoord, yKoord, typ=Knotentyp(5) ):
+		self.xKoord = xKoord
+		self.yKoord = yKoord
 	
+# Einlass und Auslass vom Stroemungskanal
+class Flussknoten_Auslass(node):
+	def __init__(xKoord, yKoord, typ=Knotentyp(6) ):
+		self.xKoord = xKoord
+		self.yKoord = yKoord

@@ -64,9 +64,14 @@ oE = Eingabe()
 # Erzeuge Ausgabe-Objekt
 
 
-abstand = 0.015
-dX = 2.5
-dY = 0.41 
+# abstand = 0.015
+abstand = 1
+# dX = 2.5
+dX = 1000
+# dY = 0.41
+dY= 50  
+
+
 
 # Erzeuge Gitter-Objekt
 #
