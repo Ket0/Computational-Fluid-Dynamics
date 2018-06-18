@@ -82,15 +82,15 @@ def main():
 	#
 	# (Eingabe, par_abstand, par_xK, par_yK):
 	# mN = grid.Gitter(Eingabe_obj, Eingabe_obj.abstand, Eingabe_obj.dX, Eingabe_obj.dY)
-	mN = gd.Gitter(par_abstand=abstand, par_xK=dX, par_yK=dY)
+	mN = gd.UniformesGitter(par_xK=dX, par_yK=dY)
 
 	#  - grid.generiereGitter()
 	mN.erzeugeGitter_v1()
 	# check_anzahl_knoten = mN.getKnotenZahl()
 	# print(check_anzahl_knoten) # gibt 10 aus, check
 
-	# for i in range(9):
-		# print (mN.seq_Wand_0[i].get_koordinaten() )
+	for i in range(9):
+		print (mN.seq_Wand_0[i].get_koordinaten() )
 
 	#  - grid.distanz()
 

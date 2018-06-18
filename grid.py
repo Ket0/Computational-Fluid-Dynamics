@@ -59,7 +59,65 @@ Oben Mitte Unten
 #
 # Definiert, wie das Gitter im Detail erzeugt wird.
 
-class Gitter (object):
+class Gitter(object):
+	def __init__(self, par_xK, par_yK, par_abstand=1):
+		self.abstand = par_abstand
+		self.xk = par_xK
+		self.yk = par_yK
+
+	# Fuer Knoten, die sich im Graubereich befinden 
+	# Prueft Knotentyp
+	# 
+	def graupruefung(self):
+		pass
+
+	"""
+	Problemstellung (fuer beliebig gewaehlten Abstand)
+	Graubereich ist die Fläche bzw. das Volumen (3D) in 
+	direkter Nähe um den Polygonzug
+
+	Polygonzug = /
+	Fluid = F
+	Solid = S
+	Wand = W
+
+			F F F F / S
+			F F F / S S
+			F F / S S
+		  F	F / S S S
+	      F F F / / /
+
+	"""
+
+	# Zugriff Objekt-Attribute
+	#
+	# Liefert die Anzahl der Knoten in X-Richtung zurueck
+	def getAnzahlXKnoten(self):
+		return self.anzahl_x_knoten
+
+	# Zugriff Objekt-Attribute
+	#
+	# Liefert die Anzahl der Knoten in Y-Richtung zurueck
+	def getAnzahlYKnoten(self):
+		return self.anzahl_y_knoten
+
+	# Zugriff Objekt-Attribute
+	# 
+	# Liefert den Knotenabstand als Rueckgabewert
+	def getAbstand(self):
+		return self.abstand
+
+	def punktImPolygon(self):
+		pass
+
+	def findeNachbarn(self):
+		pass
+
+	def distanz(self):
+		pass
+
+
+class UniformesGitter (Gitter):
 
 	# Klassenvariablen
 	#
@@ -81,60 +139,86 @@ class Gitter (object):
 	seq_Auslass = []
 
 	# Instanzvariablen
-	def __init__(self, par_abstand, par_xK, par_yK):
-		
+	# def __init__(self, par_xK, par_yK):
+		# super().__init__(self, par_xK, par_yK)
+	
 		# Abstand der Knoten 
 		# Im Prototyp v0.1 entspricht der Abstand
 		# dem Betrag 1
 		#
-		self.abstand = par_abstand
+		# self.abstand = par_abstand
 		
 		# xk = X-Knoten
-		self.xk = par_xK
+		# self.xk = par_xK
 		
 		# yk = Y-Knoten
-		self.yk = par_yK
+		# self.yk = par_yK
 
-		# Berechne gerade Anzahl an Knoten
-		# self.anzahl_x_knoten = Eingabe.dX/self.abstand
+	# Berechne gerade Anzahl an Knoten
+	# self.anzahl_x_knoten = Eingabe.dX/self.abstand
 
-		# Aktualisiere Abstand
-		# self.abstand = Eingabe.dx/self.anzahl_x_knoten
+	# Aktualisiere Abstand
+	# self.abstand = Eingabe.dx/self.anzahl_x_knoten
 
-		#
-		# self.anzahl_x_knoten = self.anzahl_x_knoten+1
+	#
+	# self.anzahl_x_knoten = self.anzahl_x_knoten+1
 
-		#
-		# self.anzahl_y_knoten = Eingabe.dy/self.abstand
+	#
+	# self.anzahl_y_knoten = Eingabe.dy/self.abstand
 
-		#
-		# self.anzahl_y_knoten = self.anzahl_y_knoten+1
+	#
+	# self.anzahl_y_knoten = self.anzahl_y_knoten+1
 
+	def erzeugeGitter_v1(self):
+		
+		# Zaehler
+		a=0 
+		b=0
 
-	"""
-	Problemstellung (fuer beliebig gewaehlten Abstand)
-	Graubereich ist die Fläche bzw. das Volumen (3D) in 
-	direkter Nähe um den Polygonzug
+		# Knoten in x-Richtung
+		kx_ = self.xk
 
-	Polygonzug = /
-	Fluid = F
-	Solid = S
-	Wand = W
+		# Flussknoten_Einlass in y-Richtung
+		ky_ = self.yk-1
+		
+		# Wand unten (=Wand_0)
+		# unten links = Knoten Null
+		while(a<kx_):
+			self.seq_Wand_0.append( Wandknoten(0, a) )
+			a=a+1
+			# print(self.seq_Wand_0)
 
-			F F F F / S
-			F F F / S S
-			F F / S S
-		  F	F / S S S
-	      F F F / / /
+		# Wand oben (=Wand_1)
+		# 
+		while(b<ky_):
+			self.seq_Wand_1.append( Wandknoten(self.yk, b) )
+			b=b+1
+			# print(self.seq_Wand_0)
 
-	"""
+		# Ränder
+		# πάντα ῥεῖ
 
-	# Fuer Knoten, die sich im Graubereich befinden 
-	# Prueft Knotentyp
+	def printGitter(self):
+		myNodes = len(self.seq_Wand_0)
+		zaehler = 0
+		while(zaehler<myNodes):
+			print('Knoten: %d %d', self.seq_Wand_0[zaehler], self.xKoord, self.yKoord)
+			zaehler = zaehler+1
+
+	def getKnotenZahl(self):
+		zahl = len(self.seq_Wand_0)
+		return zahl	
+
 	# 
-	def graupruefung(self):
-		pass
+	def punktHinzufuegen(self, mySequence, x_Node):
+		mySequence.append(x_Node)
+		return 
 
+
+
+
+
+"""
 	# Prototyp abstrahiert vom Gitterabstand
 	# 
 	# 
@@ -166,7 +250,7 @@ class Gitter (object):
 		b=1
 		while(b<ky):
 			seq_Einlass.append( Flussknoten(0, b+1) )
-			print(seq_Einlass)
+			# print(seq_Einlass)
 			b=b+1
 
 		# Einlass
@@ -177,79 +261,4 @@ class Gitter (object):
 		# Grauknoten
 		# hier wird es haarig
 		# Prototyp v0.1 kennt kein Hindernis!
-
-	def erzeugeGitter_v1(self):
-		
-		# Zaehler
-		a=0 
-		b=0
-
-		# Knoten in x-Richtung
-		kx_ = self.xk
-
-		# Flussknoten_Einlass in y-Richtung
-		ky_ = self.yk-1
-		
-		# Wand unten (=Wand_0)
-		# unten links = Knoten Null
-		while(a<kx_):
-			self.seq_Wand_0.append( Wandknoten(0, a) )
-			a=a+1
-			# print(self.seq_Wand_0)
-
-		# Wand oben (=Wand_1)
-		# 
-		while(a<kx_):
-			self.seq_Wand_0.append( Wandknoten(0, a) )
-			a=a+1
-			# print(self.seq_Wand_0)
-
-		# Ränder
-		# πάντα ῥεῖ
-
-	def printGitter(self):
-		myNodes = len(self.seq_Wand_0)
-		zaehler = 0
-		while(zaehler<myNodes):
-			print('Knoten: %d %d', self.seq_Wand_0[zaehler], self.xKoord, self.yKoord)
-			zaehler = zaehler+1
-
-	def getKnotenZahl(self):
-		zahl = len(self.seq_Wand_0)
-		return zahl	
-
-
-	def punktImPolygon(self):
-		pass
-
-	def findeNachbarn(self):
-		pass
-
-	def distanz(self):
-		pass
-
-	# Zugriff Objekt-Attribute
-	#
-	# Liefert die Anzahl der Knoten in X-Richtung zurueck
-	def getAnzahlXKnoten(self):
-		return self.anzahl_x_knoten
-
-	# Zugriff Objekt-Attribute
-	#
-	# Liefert die Anzahl der Knoten in Y-Richtung zurueck
-	def getAnzahlYKnoten(self):
-		return self.anzahl_y_knoten
-
-	# Zugriff Objekt-Attribute
-	# 
-	# Liefert den Knotenabstand als Rueckgabewert
-	def getAbstand(self):
-		return self.abstand
-
-	# 
-	def punktHinzufuegen(self, mySequence, x_Node):
-		mySequence.append(x_Node)
-		return 
-
-
-
+"""
