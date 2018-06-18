@@ -18,11 +18,7 @@
 
 import time
 import numpy as np
-
-# from node import *
 import node as nd
-# import grid
-# from grid import *
 import grid as gd
 
 class Eingabe(object):
@@ -52,14 +48,6 @@ omega =
 """
 
 def main():
-    # """business logic for when running this module as the primary one!"""
-    # setup()
-    # foo = do_important()
-    # bar = do_even_more_important(foo)
-    # for baz in bar:
-    #     do_super_important(baz)
-    # teardown()
-
 	print('main.py starten.')
 	print('\nProgrammstart\n') 
 
@@ -83,8 +71,6 @@ def main():
 	# dY = 0.41
 	dY= 5
 
-
-
 	# Erzeuge Gitter-Objekt
 	#
 	# (Eingabe, par_abstand, par_xK, par_yK):
@@ -107,9 +93,6 @@ def main():
 	#    die Anzahl ist über len() bekannt.
 	print('Knotenliste erstellt.')
 	meineKnotenliste = []
-
-
-
 
 	# Calculation
 
@@ -145,9 +128,6 @@ def main():
 	#Post-Processing
 	print('\nPost-Processing\n')
 	print('\nProgrammende')
-
-
-
 
 if __name__ == '__main__':
 	main()
