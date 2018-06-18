@@ -61,6 +61,9 @@ class node (object):
 	def get_koordinaten(self):
 		print('{} {}'.format(self.xKoord, self.yKoord))
 
+	def get_attributes(self):
+		print('{} {} {}'.format(self.xKoord, self.yKoord, self.typ))
+
 	def transport():
 		pass
 	
@@ -73,41 +76,36 @@ class node (object):
 	def kalkuliereErgebnis():
 		pass
 
-print('Importiere: Subklasse Fluidknoten')
 # Subknoten
+
+# PR Knoten
+#
+print('Importiere: Subklasse Fluidknoten')
 class Fluidknoten(node):
-	def __init__(self, xKoord, yKoord, typ=Knotentyp(1) ):
-		self.xKoord = xKoord
-		self.yKoord = yKoord
+	def __init__(self, par_x, par_y, typ=Knotentyp(1) ):
+		super().__init__(self, par_x, par_y)
 
-
-print('Importiere: Subklasse Wandknoten')
 # Wandknoten
-# class Wandknoten(node):
-# 	def __init__(par_x, par_y, par_typ=Knotentyp(2) ):
-# 		self.xKoord = par_x
-# 		self.yKoord = par_y
-# 		self.typ = par_typ
-
+#
+#
+print('Importiere: Subklasse Wandknoten')
 class Wandknoten(node):
 	def __init__(self, par_x, par_y, par_typ=Knotentyp(2)):
-		self.xKoord = par_x
-		self.yKoord = par_y
+		super().__init__(self, par_x, par_y)
 		self.typ = par_typ
 
-	def get_attributes(self):
-		print('{} {} {}'.format(self.xKoord, self.yKoord, self.typ))
-		
+# Einlass und Auslass vom Stroemungskanal
+#
+#
 print('Importiere: Subklasse Flussknoten_Einlass')
-# Einlass und Auslass vom Stroemungskanal
 class Flussknoten_Einlass(node):
-	def __init__(self, xKoord, yKoord, typ=Knotentyp(5) ):
-		self.xKoord = xKoord
-		self.yKoord = yKoord
+	def __init__(self, par_x, par_y, typ=Knotentyp(5) ):
+		super().__init__(self, par_x, par_y)
 
-print('Importiere: Subklasse Flussknoten_Auslass\n')
 # Einlass und Auslass vom Stroemungskanal
+#
+#
+print('Importiere: Subklasse Flussknoten_Auslass\n')
 class Flussknoten_Auslass(node):
-	def __init__(self, xKoord, yKoord, typ=Knotentyp(6) ):
-		self.xKoord = xKoord
-		self.yKoord = yKoord
+	def __init__(self, par_x, par_y, typ=Knotentyp(6) ):
+		super().__init__(self, par_x, par_y)
