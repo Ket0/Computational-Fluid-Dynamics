@@ -9,16 +9,22 @@
 ## Ort: 	Potsdam
 ## Sprache: Python
 ## Version: 3.6.1
-##
-
+#
+# ~~~ πάντα ῥεῖ ~~~
+#
 ## In den folgend gezeigten Programmanweisungen wird ein bestehender CFD Löser für ein zweidimensionales
 ## Stroemungsgebiet, geschrieben in der Sprache C++, auf Python portiert.
 ##  
 ## 
+print('\nProgrammstart\n') 
 
 import time
 import numpy as np
+
+# from node import *
 import node as nd
+# import grid
+# from grid import *
 import grid as gd
 
 class Eingabe(object):
@@ -48,12 +54,7 @@ omega =
 """
 
 def main():
-	print('main.py starten.')
-	print('\nProgrammstart\n') 
-
-	print('Pre-Processing\n')
-	# Pre-Processing
-
+	print('# # # Pre-Processing / / / \n')
 	# Erzeuge Eingabe-Objekt
 	#
 	#
@@ -63,12 +64,11 @@ def main():
 	# Erzeuge Zeit-Objekt
 	# Erzeuge Ausgabe-Objekt
 
-
 	# abstand = 0.015
-	abstand = 1
 	# dX = 2.5
-	dX = 10
 	# dY = 0.41
+	abstand = 1
+	dX = 10
 	dY= 5
 
 	# Erzeuge Gitter-Objekt
@@ -79,14 +79,13 @@ def main():
 
 	#  - grid.generiereGitter()
 	mN.erzeugeGitter_v1()
-	check_anzahl_knoten = mN.getKnotenZahl()
-	print(check_anzahl_knoten) # gibt 10 aus, check
+	# check_anzahl_knoten = mN.getKnotenZahl()
+	# print(check_anzahl_knoten) # gibt 10 aus, check
 
-	# Drucke Gitter
-	# mN.printGitter()
+	for i in range(9):
+		print (mN.seq_Wand_0[i].get_koordinaten() )
 
 	#  - grid.distanz()
-
 
 	#  - grid.punkte() -> Punkte in Sequenz einfuegen 
 	#    alle Punkte des Gitter sind hier gespeichert 
@@ -94,19 +93,10 @@ def main():
 	print('Knotenliste erstellt.')
 	meineKnotenliste = []
 
-	# Calculation
-
-	# Hauptschleife
-
-	# Ausgabe 
-	# Schreibe in VTK Datei
-
-	# Oeffne Datei
-
 	# Zahlvariable
 	i=0
 
-	print('\nStarte Hauptschleife\n')
+	print('\n# # # Starte Hauptschleife # # #\n')
 	while(i<1):
 		
 		print('Transportschritt')
@@ -124,10 +114,10 @@ def main():
 		# zaehl hoch
 		i=i+1 
 
-
 	#Post-Processing
-	print('\nPost-Processing\n')
-	print('\nProgrammende')
+	print('\n \ \ \ Post-Processing # # #\n')
 
 if __name__ == '__main__':
+	print('main.py starten.')
 	main()
+	print('\nProgrammende')

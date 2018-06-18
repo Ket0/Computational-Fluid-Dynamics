@@ -181,11 +181,21 @@ class Gitter (object):
 			a=a+1
 			# print(self.seq_Wand_0)
 
+		# Wand oben (=Wand_1)
+		# 
+		while(a<kx_):
+			self.seq_Wand_0.append( Wandknoten(0, a) )
+			a=a+1
+			# print(self.seq_Wand_0)
+
+		# Ränder
+		# πάντα ῥεῖ
+
 	def printGitter(self):
 		myNodes = len(self.seq_Wand_0)
 		zaehler = 0
 		while(zaehler<myNodes):
-			print('Knoten: ', self.seq_Wand_0[zaehler])
+			print('Knoten: %d %d', self.seq_Wand_0[zaehler], self.xKoord, self.yKoord)
 			zaehler = zaehler+1
 
 	def getKnotenZahl(self):
