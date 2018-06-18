@@ -14,8 +14,7 @@ class Knotentyp(enum.Enum):
 
 # Wurzel der Vererbungshierachie
 # 
-# Vererbe Interface Knoten an Subknotentypen
-# Wurzelknoten/Basisklasse
+# 
 print('\nImportiere: Wurzelklasse Knoten')
 class node (object):
 	# def __init__(self):
