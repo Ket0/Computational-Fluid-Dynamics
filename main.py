@@ -6,7 +6,14 @@
 ##
 ## Author : Stefan Eickholz
 ## Datum:   11.06.2018
-## Ort:     101111 01110100 01110011 01100100 01100001 01101101  01101001 01101110  01010000 01110010 01100101 01110101 01110011 01110011 01100101 01101110 
+## Ort:     
+
+#   dBBBBBb     dBBBBP  dBBBBBBP  .dBBBBP     dBBBBb  dBBBBBb     dBBBBBBb
+#       dB'    dBP.BP             BP             dBP       BB          dBP
+#   dBBBP'    dBP.BP     dBP      `BBBBb    dBP dBP    dBP BB   dBPdBPdBP 
+#  dBP       dBP.BP     dBP          dBP   dBP dBP    dBP  BB  dBPdBPdBP  
+# dBP       dBBBBP     dBP      dBBBBP'   dBBBBBP    dBBBBBBB dBPdBPdBP   
+
 ## Sprache: Python
 ## Version: 3.6.1
 #
