@@ -90,7 +90,9 @@ print('Importiere: Subklasse Wandknoten')
 # 		self.typ = par_typ
 
 class Wandknoten(node):
-	def __init__(self, par_typ=Knotentyp(2)):
+	def __init__(self, par_x, par_y, par_typ=Knotentyp(2)):
+		self.xKoord = par_x
+		self.yKoord = par_y
 		self.typ = par_typ
 
 	def get_attributes(self):

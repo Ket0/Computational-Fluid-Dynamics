@@ -2,7 +2,7 @@
 ## 
 ## // Portierung eines Gitter-Boltzmann-Lösers von C++ nach Python \\
 ##
-## Version: 1.0
+## Version: v0.1
 ##
 ## Author : Stefan Eickholz
 ## Datum:   11.06.2018

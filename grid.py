@@ -36,6 +36,22 @@ WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
 """
 
 # 2. 3D Gitter 
+
+""" 
+
+	3D Struktur (9 Elemente pro Ebene; 3 Ebenen = 9x3 Elemente)
+
+= 3 Ebenen (aufgefaltet); S=Eingebetteter Solidknoten
+
+   fff fff fff
+   fff fSf fff
+   fff fff fff
+
+   ^   ^   ^
+Oben Mitte Unten
+ 
+"""
+
 # 3. 2D Gitter morphologisch/adaptiv
 # 4. 3D Gitter morphologisch/adaptiv
 
