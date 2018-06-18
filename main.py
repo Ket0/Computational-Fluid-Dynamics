@@ -18,9 +18,12 @@
 
 import time
 import numpy as np
-import node
-import grid
 
+# from node import *
+import node as nd
+# import grid
+# from grid import *
+import grid as gd
 
 class Eingabe(object):
 	def __init__(self):
@@ -48,80 +51,103 @@ Zeitschritt =
 omega = 
 """
 
-print('main.py starten.')
-print('\nProgrammstart\n') 
+def main():
+    # """business logic for when running this module as the primary one!"""
+    # setup()
+    # foo = do_important()
+    # bar = do_even_more_important(foo)
+    # for baz in bar:
+    #     do_super_important(baz)
+    # teardown()
 
-print('Pre-Processing')
-# Pre-Processing
+	print('main.py starten.')
+	print('\nProgrammstart\n') 
 
-# Erzeuge Eingabe-Objekt
-#
-#
-oE = Eingabe()
+	print('Pre-Processing\n')
+	# Pre-Processing
 
-# Erzeuge Ausgabe-Objekt
-# Erzeuge Zeit-Objekt
-# Erzeuge Ausgabe-Objekt
+	# Erzeuge Eingabe-Objekt
+	#
+	#
+	oE = Eingabe()
 
-
-# abstand = 0.015
-abstand = 1
-# dX = 2.5
-dX = 1000
-# dY = 0.41
-dY= 50  
-
-
-
-# Erzeuge Gitter-Objekt
-#
-# (Eingabe, par_abstand, par_xK, par_yK):
-# mN = grid.Gitter(Eingabe_obj, Eingabe_obj.abstand, Eingabe_obj.dX, Eingabe_obj.dY)
-mN = grid.Gitter(par_abstand=abstand, par_xK=dX, par_yK=dY)
-#  - grid.generiereGitter()
-#  - grid.distanz()
+	# Erzeuge Ausgabe-Objekt
+	# Erzeuge Zeit-Objekt
+	# Erzeuge Ausgabe-Objekt
 
 
-#  - grid.punkte() -> Punkte in Sequenz einfuegen 
-#    alle Punkte des Gitter sind hier gespeichert 
-#    die Anzahl ist über len() bekannt.
-print('Knotenliste erstellt.')
-meineKnotenliste = []
+	# abstand = 0.015
+	abstand = 1
+	# dX = 2.5
+	dX = 10
+	# dY = 0.41
+	dY= 5
 
 
 
+	# Erzeuge Gitter-Objekt
+	#
+	# (Eingabe, par_abstand, par_xK, par_yK):
+	# mN = grid.Gitter(Eingabe_obj, Eingabe_obj.abstand, Eingabe_obj.dX, Eingabe_obj.dY)
+	mN = gd.Gitter(par_abstand=abstand, par_xK=dX, par_yK=dY)
 
-# Calculation
+	#  - grid.generiereGitter()
+	mN.erzeugeGitter_v1()
+	check_anzahl_knoten = mN.getKnotenZahl()
+	print(check_anzahl_knoten) # gibt 10 aus, check
 
-# Hauptschleife
+	# Drucke Gitter
+	# mN.printGitter()
 
-# Ausgabe 
-# Schreibe in VTK Datei
-
-# Oeffne Datei
-
-# Zahlvariable
-i=0
-
-print('\nStarte Hauptschleife\n')
-while(i<1):
-	
-	print('Transportschritt')
-	# Wende auf alle Knoten den Transportschritt an
-	pass
-
-	print('Kollisionsschritt')
-	# Wende auf alle Knoten den Kollisionsschritt an
-	pass
-
-	print('Ergebnbis')
-	# Berechne fuer jeden Knoten das Ergebnis
-	pass
-
-	# zaehl hoch
-	i=i+1 
+	#  - grid.distanz()
 
 
-#Post-Processing
-print('\nPost-Processing\n')
-print('\nProgrammende')
+	#  - grid.punkte() -> Punkte in Sequenz einfuegen 
+	#    alle Punkte des Gitter sind hier gespeichert 
+	#    die Anzahl ist über len() bekannt.
+	print('Knotenliste erstellt.')
+	meineKnotenliste = []
+
+
+
+
+	# Calculation
+
+	# Hauptschleife
+
+	# Ausgabe 
+	# Schreibe in VTK Datei
+
+	# Oeffne Datei
+
+	# Zahlvariable
+	i=0
+
+	print('\nStarte Hauptschleife\n')
+	while(i<1):
+		
+		print('Transportschritt')
+		# Wende auf alle Knoten den Transportschritt an
+		pass
+
+		print('Kollisionsschritt')
+		# Wende auf alle Knoten den Kollisionsschritt an
+		pass
+
+		print('Ergebnbis')
+		# Berechne fuer jeden Knoten das Ergebnis
+		pass
+
+		# zaehl hoch
+		i=i+1 
+
+
+	#Post-Processing
+	print('\nPost-Processing\n')
+	print('\nProgrammende')
+
+
+
+
+if __name__ == '__main__':
+	main()

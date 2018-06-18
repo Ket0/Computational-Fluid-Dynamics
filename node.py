@@ -16,6 +16,7 @@ class Knotentyp(enum.Enum):
 # 
 # Vererbe Interface Knoten an Subknotentypen
 # Wurzelknoten/Basisklasse
+print('\nImportiere: Wurzelklasse Knoten')
 class node (object):
 	def __init__(self):
 	# def __init__(par_druck, par_init_vx, par_init_vy, par_rho, par_cs, par_xi, par_omega, par_u0x, par_u0y, par_eta, par_abstand, par_charL):
@@ -57,24 +58,30 @@ class node (object):
 	def kalkuliereErgebnis():
 		pass
 
+print('Importiere: Subklasse Fluidknoten')
 # Subknoten
 class Fluidknoten(node):
-	def __init__():
-		pass
+	def __init__(self, xKoord, yKoord, typ=Knotentyp(2) ):
+		self.xKoord = xKoord
+		self.yKoord = yKoord
+
+print('Importiere: Subklasse Wandknoten')
 # Wandknoten
 class Wandknoten(node):
-	def __init__(xKoord, yKoord, typ=Knotentyp(2) ):
+	def __init__(self, xKoord, yKoord, typ=Knotentyp(2) ):
 		self.xKoord = xKoord
 		self.yKoord = yKoord
 		
+print('Importiere: Subklasse Flussknoten_Einlass')
 # Einlass und Auslass vom Stroemungskanal
 class Flussknoten_Einlass(node):
-	def __init__(xKoord, yKoord, typ=Knotentyp(5) ):
+	def __init__(self, xKoord, yKoord, typ=Knotentyp(5) ):
 		self.xKoord = xKoord
 		self.yKoord = yKoord
-	
+
+print('Importiere: Subklasse Flussknoten_Auslass\n')
 # Einlass und Auslass vom Stroemungskanal
 class Flussknoten_Auslass(node):
-	def __init__(xKoord, yKoord, typ=Knotentyp(6) ):
+	def __init__(self, xKoord, yKoord, typ=Knotentyp(6) ):
 		self.xKoord = xKoord
 		self.yKoord = yKoord
