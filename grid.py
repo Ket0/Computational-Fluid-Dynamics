@@ -1,5 +1,5 @@
 
-print('gitter.py importiert.')
+print('gitter.py importiert.\n')
 
 from node import *
 
@@ -58,7 +58,7 @@ Oben Mitte Unten
 # Klasse Gitter
 #
 # Definiert, wie das Gitter im Detail erzeugt wird.
-
+print('Importiere: Wurzelklasse Gitter')
 class Gitter(object):
 	def __init__(self, par_xK, par_yK, par_abstand=1):
 		self.abstand = par_abstand
@@ -92,14 +92,14 @@ class Gitter(object):
 	# Zugriff Objekt-Attribute
 	#
 	# Liefert die Anzahl der Knoten in X-Richtung zurueck
-	def getAnzahlXKnoten(self):
-		return self.anzahl_x_knoten
+	def getLaenge(self):
+		return self.xk
 
 	# Zugriff Objekt-Attribute
 	#
 	# Liefert die Anzahl der Knoten in Y-Richtung zurueck
-	def getAnzahlYKnoten(self):
-		return self.anzahl_y_knoten
+	def getBreite(self):
+		return self.yk
 
 	# Zugriff Objekt-Attribute
 	# 
@@ -116,7 +116,7 @@ class Gitter(object):
 	def distanz(self):
 		pass
 
-
+print('Importiere: Subklasse UniformesGitter')
 class UniformesGitter (Gitter):
 
 	# Klassenvariablen
@@ -195,6 +195,9 @@ class UniformesGitter (Gitter):
 			b=b+1
 			# print(self.seq_Wand_0)
 
+		print(self.seq_Wand_0)
+		print(self.seq_Wand_1)
+
 		# Ränder
 		# πάντα ῥεῖ
 
@@ -202,7 +205,7 @@ class UniformesGitter (Gitter):
 		myNodes = len(self.seq_Wand_0)
 		zaehler = 0
 		while(zaehler<myNodes):
-			print('Knoten: %d %d', self.seq_Wand_0[zaehler], self.xKoord, self.yKoord)
+			print('{} {} {}'.format(self.seq_Wand_0[zaehler], self.xKoord, self.yKoord))
 			zaehler = zaehler+1
 
 	def getKnotenZahl(self):

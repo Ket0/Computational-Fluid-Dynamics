@@ -89,8 +89,8 @@ def main():
 	# check_anzahl_knoten = mN.getKnotenZahl()
 	# print(check_anzahl_knoten) # gibt 10 aus, check
 
-	for i in range(9):
-		print (mN.seq_Wand_0[i].get_koordinaten() )
+	# for i in range(9):
+		# print (mN.seq_Wand_0[i].get_koordinaten() )
 
 	#  - grid.distanz()
 
@@ -125,6 +125,6 @@ def main():
 	print('\n \ \ \ Post-Processing # # #\n')
 
 if __name__ == '__main__':
-	print('main.py starten.')
+	print('\nmain.py starten.\n')
 	main()
 	print('\nProgrammende')
