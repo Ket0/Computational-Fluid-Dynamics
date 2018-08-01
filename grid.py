@@ -1,6 +1,6 @@
 
-print('gitter.py importiert.\n')
-
+#print('gitter.py importiert.\n')
+print('Importiere: Wurzelklasse Gitter')
 from node import *
 
 # Uniformes Gitter 
@@ -58,7 +58,7 @@ Oben Mitte Unten
 # Klasse Gitter
 #
 # Definiert, wie das Gitter im Detail erzeugt wird.
-print('Importiere: Wurzelklasse Gitter')
+
 class Gitter(object):
 	def __init__(self, par_xK, par_yK, par_abstand=1):
 		self.abstand = par_abstand

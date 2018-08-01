@@ -1,4 +1,6 @@
-print('node.py importiert.')
+#print('node.py importiert.')
+#print('Importiere: node.py')
+print('\nImportiere: Wurzelklasse Knoten')
 
 import enum
 
@@ -16,7 +18,7 @@ class Knotentyp(enum.Enum):
 # 
 # Vererbe Interface Knoten an Subknotentypen
 # Wurzelknoten/Basisklasse
-print('\nImportiere: Wurzelklasse Knoten')
+
 class node (object):
 	# def __init__(self):
 	def __init__(self, par_x, par_y, par_typ=Knotentyp(0) ):

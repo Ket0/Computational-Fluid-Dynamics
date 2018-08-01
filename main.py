@@ -4,9 +4,9 @@
 ##
 ## Version: v0.1
 ##
-## Author : Stefan Eickholz 
-## Datum:   01.08.2018
-## Ort:     01010000 01101111 01110100 01110011 01100100 01100001 01101101  
+## Author : Stefan Eickholz
+## Datum:   31.07.2018
+## Ort:     01010000 01101111 01110100 01110011 01100100 01100001 01101101 
 
 #   dBBBBBb     dBBBBP  dBBBBBBP  .dBBBBP     dBBBBb  dBBBBBb     dBBBBBBb
 #       dB'    dBP.BP             BP             dBP       BB          dBP
@@ -25,7 +25,10 @@
 ## 
 print('\nProgrammstart\n') 
 
+print('Importiere: Modul time')
 import time
+
+print('Importiere: Modul numpy')
 import numpy as np
 
 # from node import *
@@ -33,44 +36,18 @@ import node as nd
 # import grid
 # from grid import *
 import grid as gd
-
-class Eingabe(object):
-	def __init__(self):
-		self.machZahl = 0.1
-		self.charL = 0.1
-		self.vx = 0.00730365
-		self.vy = 0
-		self.dichte = 1.225
-		self.dynamischZa = 1.7894e-05
-		# Gitter
-		self.dX = 2.5
-		self.dY = 0.41 
-		self.abstand = 0.015
-		# Initialisierungsdaten
-		self.initVX =0.00730365
-		self.initVY = 0
-
-"""
-# Druck muss berechnet werden
-cs_ = sqrt(u0x*u0y + u0y*u0y) / machZahl
-initialisierungsDruck = cs*cs*rho
-# Weiterhin berechnet wird
-xi = 
-Zeitschritt = 
-omega = 
-"""
+import eingabe as eg
+import ausgabe as ag
 
 def main():
 	print('# # # Pre-Processing / / / \n')
-	# Erzeuge Eingabe-Objekt
-	#
-	#
-	oE = Eingabe()
 
-	# Erzeuge Ausgabe-Objekt
+	# Erzeuge Ausgabe Objektreferenz
+	ausgabe = ag.Ausgabe()
+	# Erzeuge Eingabe Objektreferenz
+	eingabe = eg.Eingabe()
 	# Erzeuge Zeit-Objekt
-	# Erzeuge Ausgabe-Objekt
-
+	
 	# abstand = 0.015
 	# dX = 2.5
 	# dY = 0.41
@@ -82,10 +59,14 @@ def main():
 	#
 	# (Eingabe, par_abstand, par_xK, par_yK):
 	# mN = grid.Gitter(Eingabe_obj, Eingabe_obj.abstand, Eingabe_obj.dX, Eingabe_obj.dY)
-	mN = gd.UniformesGitter(par_xK=dX, par_yK=dY)
+	meinGitter = gd.UniformesGitter(par_xK=dX, par_yK=dY)
+	#mN.erzeugeGitter_v1()
 
-	#  - grid.generiereGitter()
-	mN.erzeugeGitter_v1()
+	# Schreibe die erste VTK Datei heraus ("T0.vtk")
+	# Beachte auch den Dateikopf
+	ausgabe.erzeugeVTK(meinGitter)
+
+
 	# check_anzahl_knoten = mN.getKnotenZahl()
 	# print(check_anzahl_knoten) # gibt 10 aus, check
 
