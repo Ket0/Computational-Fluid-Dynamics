@@ -1,7 +1,8 @@
 
 #print('gitter.py importiert.\n')
 print('Importiere: Wurzelklasse Gitter')
-from node import *
+#from node import *
+import node as nd
 
 # Uniformes Gitter 
 # Bisher ist nur eine Art von Gitter
@@ -55,15 +56,65 @@ Oben Mitte Unten
 # 3. 2D Gitter morphologisch/adaptiv
 # 4. 3D Gitter morphologisch/adaptiv
 
-# Klasse Gitter
-#
-# Definiert, wie das Gitter im Detail erzeugt wird.
-
-class Gitter(object):
+#print('Importiere: Subklasse UniformesGitter')
+# Uniformes Gitter
+class Gitter (object):
 	def __init__(self, par_xK, par_yK, par_abstand=1):
 		self.abstand = par_abstand
 		self.xk = par_xK
 		self.yk = par_yK
+		print('Konstruktor Klasse Gitter aufgerufen')
+
+	# Klassenvariablen
+	#
+	# List Datenstruktur aller Knoten im Gitter
+
+	# Fluid (~99% aller Knoten)
+	seq_Fluid = []
+
+	# Wand 'unten' 
+	seq_Wand_0 = []
+
+	# Wand 'oben'
+	seq_Wand_1 = []
+
+	# Einlass
+	seq_Einlass = []
+
+	# Auslass
+	seq_Auslass = []
+
+	# Instanzvariablen
+	# def __init__(self, par_xK, par_yK):
+		# super().__init__(self, par_xK, par_yK)
+	
+		# Abstand der Knoten 
+		# Im Prototyp v0.1 entspricht der Abstand
+		# dem Betrag 1
+		#
+		# self.abstand = par_abstand
+		
+		# xk = X-Knoten
+		# self.xk = par_xK
+		
+		# yk = Y-Knoten
+		# self.yk = par_yK
+
+	# Berechne gerade Anzahl an Knoten
+	# self.anzahl_x_knoten = Eingabe.dX/self.abstand
+
+	# Aktualisiere Abstand
+	# self.abstand = Eingabe.dx/self.anzahl_x_knoten
+
+	#
+	# self.anzahl_x_knoten = self.anzahl_x_knoten+1
+
+	#
+	# self.anzahl_y_knoten = Eingabe.dy/self.abstand
+
+	#
+	# self.anzahl_y_knoten = self.anzahl_y_knoten+1
+
 
 	# Fuer Knoten, die sich im Graubereich befinden 
 	# Prueft Knotentyp
@@ -116,63 +167,10 @@ class Gitter(object):
 	def distanz(self):
 		pass
 
-print('Importiere: Subklasse UniformesGitter')
-class UniformesGitter (Gitter):
-
-	# Klassenvariablen
-	#
-	# List aller Knoten im Gitter
-
-	# Fluid (~99% aller Knoten)
-	seq_Fluid = []
-
-	# Wand 'unten' 
-	seq_Wand_0 = []
-
-	# Wand 'oben'
-	seq_Wand_1 = []
-
-	# Einlass
-	seq_Einlass = []
-
-	# Auslass
-	seq_Auslass = []
-
-	# Instanzvariablen
-	# def __init__(self, par_xK, par_yK):
-		# super().__init__(self, par_xK, par_yK)
-	
-		# Abstand der Knoten 
-		# Im Prototyp v0.1 entspricht der Abstand
-		# dem Betrag 1
-		#
-		# self.abstand = par_abstand
-		
-		# xk = X-Knoten
-		# self.xk = par_xK
-		
-		# yk = Y-Knoten
-		# self.yk = par_yK
-
-	# Berechne gerade Anzahl an Knoten
-	# self.anzahl_x_knoten = Eingabe.dX/self.abstand
-
-	# Aktualisiere Abstand
-	# self.abstand = Eingabe.dx/self.anzahl_x_knoten
-
-	#
-	# self.anzahl_x_knoten = self.anzahl_x_knoten+1
-
-	#
-	# self.anzahl_y_knoten = Eingabe.dy/self.abstand
-
-	#
-	# self.anzahl_y_knoten = self.anzahl_y_knoten+1
-
 	def erzeugeGitter_v1(self):
-		
+		print('Methode Gitter.erzeugeGitter_v1 aufgerufen')
 		# Zaehler
-		a=0 
+		a=0
 		b=0
 
 		# Knoten in x-Richtung
@@ -184,31 +182,25 @@ class UniformesGitter (Gitter):
 		# Wand unten (=Wand_0)
 		# unten links = Knoten Null
 		while(a<kx_):
-			self.seq_Wand_0.append( Wandknoten(0, a) )
+			self.seq_Wand_0.append( nd.Wandknoten(0, a) )
 			a=a+1
 			# print(self.seq_Wand_0)
 
 		# Wand oben (=Wand_1)
 		# 
 		while(b<ky_):
-			self.seq_Wand_1.append( Wandknoten(self.yk, b) )
+			self.seq_Wand_1.append( nd.Wandknoten(self.yk, b) )
 			b=b+1
-			# print(self.seq_Wand_0)
-
-		print(self.seq_Wand_0)
-		print(self.seq_Wand_1)
+			# print(self.seq_Wand_0)		
 
 		# Ränder
 		# πάντα ῥεῖ
 
-	def printGitter(self):
-		myNodes = len(self.seq_Wand_0)
-		zaehler = 0
-		while(zaehler<myNodes):
-			print('{} {} {}'.format(self.seq_Wand_0[zaehler], self.xKoord, self.yKoord))
-			zaehler = zaehler+1
-
 	def getKnotenZahl(self):
+		zahl = len(self.seq_Wand_0)
+		return zahl	
+
+	def getAnzahlSolidknoten(self):
 		zahl = len(self.seq_Wand_0)
 		return zahl	
 

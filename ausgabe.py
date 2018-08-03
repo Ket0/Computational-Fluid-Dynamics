@@ -6,7 +6,7 @@ class Ausgabe(object):
 	def __init__(self):
 		pass
 
-	def erzeugeVTK(self, Gitter):
+	def schreibeVTK(self, Gitter):
 		# Der Dateiname wird durch einen
 		# Zaehler variiert
 		filename = ""
@@ -56,7 +56,15 @@ class Ausgabe(object):
 		f.write("DIMENSIONS " + x + " " + y + " 1\n")
 		f.write("ORIGIN 0 0 0\n")
 		f.write("SPACING " + a + " " + a + " 1\n")
-		f.write("")
+
+		# grid.all.size() 
+		# gibt Anzahl Solidknoten
+		# zurueck
+
+		f.write("POINT_DATA " + "\n")
+		f.write("SCALARS " + "Druck " + "FLOAT\n")
+		f.write("LOOKUP_TABLE default\n")
+
 
 		# Schreibe mehrere Werte in Datei
 		i = 0

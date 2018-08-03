@@ -4,8 +4,8 @@
 ##
 ## Version: v0.1
 ##
-## Author:  Dipl. Wirtsch.-Ing. Stefan Eickholz (Fachbereich Maschinenbau)
-## Datum:   01.08.2018 
+## Author : Dipl. Wirtsch.-Ing. Stefan Eickholz (Fachbereich Maschinenbau)
+## Datum:   01.08.2018
 ## Ort:     01010000 01101111 01110100 01110011 01100100 01100001 01101101 
 
 #   dBBBBBb     dBBBBP  dBBBBBBP  .dBBBBP     dBBBBb  dBBBBBb     dBBBBBBb
@@ -39,6 +39,22 @@ import grid as gd
 import eingabe as eg
 import ausgabe as ag
 
+
+	# def printGitter1(self):
+	# print('Methode Gitter.printGitter aufgerufen')
+	# myNodes = len(self.seq_Wand_0)
+	# zaehler = 0
+	# while(zaehler<myNodes):
+	# 	# Druckt Koordinaten des Knoten aus
+	# 	print('{} {} {}'.format(self.seq_Wand_0[zaehler], Wandknoten.xk, Wandknoten.yk) )
+	# 	zaehler = zaehler+1
+
+
+def printGitter2(Gitter):
+	anzahlElemente = len(Gitter.seq_Wand_0)
+	for iterator in range(0, anzahlElemente):
+		print( Gitter.seq_Wand_0[iterator].get_koordinaten() )
+
 def main():
 	print('# # # Pre-Processing / / / \n')
 
@@ -47,24 +63,37 @@ def main():
 	# Erzeuge Eingabe Objektreferenz
 	eingabe = eg.Eingabe()
 	# Erzeuge Zeit-Objekt
-	
-	# abstand = 0.015
-	# dX = 2.5
-	# dY = 0.41
-	abstand = 1
-	dX = 10
-	dY= 5
+
 
 	# Erzeuge Gitter-Objekt
 	#
 	# (Eingabe, par_abstand, par_xK, par_yK):
 	# mN = grid.Gitter(Eingabe_obj, Eingabe_obj.abstand, Eingabe_obj.dX, Eingabe_obj.dY)
-	meinGitter = gd.UniformesGitter(par_xK=dX, par_yK=dY)
-	#mN.erzeugeGitter_v1()
+
+	# abstand = 0.015
+	# dX = 2.5
+	# dY = 0.41
+
+	# Gitter Parameter waehlen
+	abstand = 1
+	dX = 10
+	dY= 5
+	# Gitter Objekt erzeugen
+	meinGitter = gd.Gitter(par_xK=dX, par_yK=dY)
+
+	# Knoten des Gitters erzeugen
+	meinGitter.erzeugeGitter_v1()
+	printGitter2(meinGitter)
+
+	#print(meinGitter.seq_Wand_0[1].get_koordinaten())
+
+	#k1 = nd.node(10,10)
+	#w1 = nd.Wandknoten(10,10)
+	#f1 = nd.Fluidknoten(10,10)
 
 	# Schreibe die erste VTK Datei heraus ("T0.vtk")
 	# Beachte auch den Dateikopf
-	ausgabe.erzeugeVTK(meinGitter)
+	#ausgabe.schreibeVTK(meinGitter)
 
 
 	# check_anzahl_knoten = mN.getKnotenZahl()
@@ -78,7 +107,7 @@ def main():
 	#  - grid.punkte() -> Punkte in Sequenz einfuegen 
 	#    alle Punkte des Gitter sind hier gespeichert 
 	#    die Anzahl ist über len() bekannt.
-	print('Knotenliste erstellt.')
+	#print('Knotenliste erstellt.')
 	meineKnotenliste = []
 
 	# Zahlvariable
