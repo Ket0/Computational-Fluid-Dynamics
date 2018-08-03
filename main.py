@@ -38,52 +38,36 @@ import node as nd
 import grid as gd
 import eingabe as eg
 import ausgabe as ag
+import hilfsfunktionen as hlf
 
-
-	# def printGitter1(self):
-	# print('Methode Gitter.printGitter aufgerufen')
-	# myNodes = len(self.seq_Wand_0)
-	# zaehler = 0
-	# while(zaehler<myNodes):
-	# 	# Druckt Koordinaten des Knoten aus
-	# 	print('{} {} {}'.format(self.seq_Wand_0[zaehler], Wandknoten.xk, Wandknoten.yk) )
-	# 	zaehler = zaehler+1
-
-
-def printGitter2(Gitter):
-	anzahlElemente = len(Gitter.seq_Wand_0)
-	for iterator in range(0, anzahlElemente):
-		print( Gitter.seq_Wand_0[iterator].get_koordinaten() )
+def vorbereitungen():
+	# Parameter einlesen
+	# Objekte erzeugen
+	pass
 
 def main():
-	print('# # # Pre-Processing / / / \n')
+	print('# # # Vorverarbeitung / / / \n')
 
 	# Erzeuge Ausgabe Objektreferenz
 	ausgabe = ag.Ausgabe()
 	# Erzeuge Eingabe Objektreferenz
 	eingabe = eg.Eingabe()
 	# Erzeuge Zeit-Objekt
-
-
-	# Erzeuge Gitter-Objekt
 	#
-	# (Eingabe, par_abstand, par_xK, par_yK):
-	# mN = grid.Gitter(Eingabe_obj, Eingabe_obj.abstand, Eingabe_obj.dX, Eingabe_obj.dY)
 
-	# abstand = 0.015
-	# dX = 2.5
-	# dY = 0.41
-
+	# Gitter
 	# Gitter Parameter waehlen
 	abstand = 1
-	dX = 10
-	dY= 5
+
 	# Gitter Objekt erzeugen
-	meinGitter = gd.Gitter(par_xK=dX, par_yK=dY)
+	# meinGitter = grid.Gitter(Eingabe_obj, Eingabe_obj.abstand, Eingabe_obj.dX, Eingabe_obj.dY)
+	meinGitter = gd.Gitter(par_xK=10, par_yK=5)
 
 	# Knoten des Gitters erzeugen
 	meinGitter.erzeugeGitter_v1()
-	printGitter2(meinGitter)
+
+	# Schreibe Knoten des Gitters in Ausgabe
+	hlf.printGitter2(meinGitter)
 
 	#print(meinGitter.seq_Wand_0[1].get_koordinaten())
 
@@ -132,9 +116,15 @@ def main():
 		i=i+1 
 
 	#Post-Processing
-	print('\n \ \ \ Post-Processing # # #\n')
+	print('\n \ \ \ Nachverarbeitung # # #\n')
 
 if __name__ == '__main__':
 	print('\nmain.py starten.\n')
 	main()
 	print('\nProgrammende')
+
+
+
+	# abstand = 0.015
+	# dX = 2.5
+	# dY = 0.41
