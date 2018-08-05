@@ -84,6 +84,13 @@ class Gitter (object):
 	# Auslass
 	seq_Auslass = []
 
+	# Solid (sind von Wandknoten umgeben, siehe Zeile 101, UniformGrid.cpp)
+	seq_Solid = []
+
+	# Typ enthaelt einen Ganzzahlwert, der als Indikator  fuer den Typ steht
+	# Laenge entspricht der Knotenanzahl im Gitter
+	seq_Type = []
+
 	# Instanzvariablen
 	# def __init__(self, par_xK, par_yK):
 		# super().__init__(self, par_xK, par_yK)
