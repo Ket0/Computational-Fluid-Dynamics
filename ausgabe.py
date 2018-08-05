@@ -63,8 +63,23 @@ class Ausgabe(object):
 
 		f.write("POINT_DATA " + "\n")
 		f.write("SCALARS " + "Druck " + "FLOAT\n")
+		# Fuer alle SOLID Knoten, gib '0' aus
+		# sonst den druck()
 		f.write("LOOKUP_TABLE default\n")
+		# Iteriere über das gesamte Gitter
+		#
+		# Iteriere über die Datenstruktur Solid und 
+		# gebe schreibe fuer jeden Solid Null
+		
+		knotenzahl = len(Gitter.seq_Type)
+		for iterator in range(0, knotenzahl):
+			if (Gitter.seq_Type[] == 3):
+				f.write('0\n')
+			else
+				#schreibe Druck
 
+
+		#anzahlElemente = len(Gitter.seq_Solid)
 
 		# Schreibe mehrere Werte in Datei
 		i = 0

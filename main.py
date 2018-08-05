@@ -12,7 +12,7 @@
 #       dB'    dBP.BP             BP             dBP       BB          dBP
 #   dBBBP'    dBP.BP     dBP      `BBBBb    dBP dBP    dBP BB   dBPdBPdBP 
 #  dBP       dBP.BP     dBP          dBP   dBP dBP    dBP  BB  dBPdBPdBP  
-# dBP       dBBBBP     dBP      dBBBBP'   dBBBBBP    dBBBBBBB dBPdBPdBP    
+# dBP       dBBBBP     dBP      dBBBBP'   dBBBBBP    dBBBBBBB dBPdBPdBP   
 
 ## Sprache: Python
 ## Version: 3.6.1
@@ -41,13 +41,16 @@ import ausgabe as ag
 import hilfsfunktionen as hlf
 
 def vorbereitungen():
+	print('# # # Vorverarbeitung / / / \n')
 	# Parameter einlesen
 	# Objekte erzeugen
 	pass
 
-def main():
-	print('# # # Vorverarbeitung / / / \n')
+def nachverarbeitung():
+	# Post-Processing
+	print('\n \ \ \ Nachverarbeitung # # #\n')
 
+def main():
 	# Erzeuge Ausgabe Objektreferenz
 	ausgabe = ag.Ausgabe()
 	# Erzeuge Eingabe Objektreferenz
@@ -67,7 +70,7 @@ def main():
 	meinGitter.erzeugeGitter_v1()
 
 	# Schreibe Knoten des Gitters in Ausgabe
-	hlf.printGitter2(meinGitter)
+	# hlf.printGitter2(meinGitter)
 
 	#print(meinGitter.seq_Wand_0[1].get_koordinaten())
 
@@ -115,12 +118,18 @@ def main():
 		# zaehl hoch
 		i=i+1 
 
-	#Post-Processing
-	print('\n \ \ \ Nachverarbeitung # # #\n')
-
 if __name__ == '__main__':
-	print('\nmain.py starten.\n')
+	print('\n__main__ starten.\n')
+
+	# 1.
+	vorbereitungen()
+
+	# 2.
 	main()
+	
+	# 3.
+	nachverarbeitung()
+
 	print('\nProgrammende')
 
 
