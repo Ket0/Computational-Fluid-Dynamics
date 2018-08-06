@@ -73,39 +73,58 @@ class Ausgabe(object):
 		
 		knotenzahl = len(Gitter.seq_Type)
 		for iterator in range(0, knotenzahl):
-			if (Gitter.seq_Type[] == 3):
+			if (Gitter.seq_Type[iterator] == 3):
 				f.write('0\n')
-			else
+			else:
 				#schreibe Druck
+				pass
+		f.write("\n")
 
+		# 
+		f.write("VECTORS " + "Geschw " + "FLOAT\n")
+		for iterator in range(0, knotenzahl):
+			if (Gitter.seq_Type[iterator] == 3):
+				f.write("0" + " 0" + " 0\n")
+			else:
+				# Methoden VX und VY sind noch 
+				# nicht implementiert
+				f.write("VX" + "VY0\n")
+		f.write("\n")
+		f.close()
 
 		#anzahlElemente = len(Gitter.seq_Solid)
 
+
 		# Schreibe mehrere Werte in Datei
-		i = 0
-		while(i<5):
-			counter=tm.clock()
+		#i = 0
+		#while(i<5):
+		#	counter=tm.clock()
+		
 			# build in Funktion 'write'
 			# kann String als Argument
 			# aufnehmen!
-			counter = str(counter)
+		
+		#	counter = str(counter)
+		
 			# +\n schreibt jeden Wert
 			# in eine neue Zeile
-			f.write(counter+"\n")
-			i += 1
-		f.close()
+		
+		#	f.write(counter+"\n")
+		#	i += 1
+		#f.close()
 
 		# Öffne *.vtk und drucke 
 		# den Inhalt aus
 		# Beachte, dass drucken 
 		# nur im 'Read Modus'
 		# möglich ist
-		f = open("T1.vtk", 'r')
+		
+		#f = open("T1.vtk", 'r')
 		# Zeilenweise Iteration ueber das 
 		# Referenzobjekt
-		for line in f:
-			print(line)
-		f.close()
+		#for line in f:
+		#	print(line)
+		#f.close()
 
 		
 

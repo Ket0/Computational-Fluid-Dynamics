@@ -61,13 +61,20 @@ def main():
 	# Gitter
 	# Gitter Parameter waehlen
 	abstand = 1
+	dY = 7  # Breite
+	dX = 4 * dY # Laenge
 
 	# Gitter Objekt erzeugen
 	# meinGitter = grid.Gitter(Eingabe_obj, Eingabe_obj.abstand, Eingabe_obj.dX, Eingabe_obj.dY)
-	meinGitter = gd.Gitter(par_xK=10, par_yK=5)
+	meinGitter = gd.Gitter(par_xK=dX, par_yK=dY)
 
 	# Knoten des Gitters erzeugen
 	meinGitter.erzeugeGitter_v1()
+
+	knotenMax = dX * dY
+	# Setze alle Knotentypen auf None
+	for iterator in range(0, knotenMax):
+		meinGitter.seq_Type.append(3)
 
 	# Schreibe Knoten des Gitters in Ausgabe
 	# hlf.printGitter2(meinGitter)
@@ -80,7 +87,7 @@ def main():
 
 	# Schreibe die erste VTK Datei heraus ("T0.vtk")
 	# Beachte auch den Dateikopf
-	#ausgabe.schreibeVTK(meinGitter)
+	ausgabe.schreibeVTK(meinGitter)
 
 
 	# check_anzahl_knoten = mN.getKnotenZahl()
@@ -96,6 +103,20 @@ def main():
 	#    die Anzahl ist über len() bekannt.
 	#print('Knotenliste erstellt.')
 	meineKnotenliste = []
+
+	# Felder fuer Verteilungen
+	# DQ9 
+	dq_count = 9
+	#VL = np.random.randn(knotenMax)
+	VL = np.ones(dX*dY*dq_count)
+	#VL = np.full ( (dY*dq_skalierung, dX*dq_skalierung), 1, dtype=float)
+	ZW = np.ones(dX*dY*dq_count)
+	EQ = np.ones(dX*dY*dq_count)
+	Druck = np.ones(dX*dY*dq_count)
+	VX = np.ones(dX*dY*dq_count)
+	VY = np.ones(dX*dY*dq_count)
+
+	#print(VL)
 
 	# Zahlvariable
 	i=0
