@@ -6,7 +6,7 @@
 ##
 ## Author : Dipl. Wirtsch.-Ing. Stefan Eickholz (Fachbereich Maschinenbau)
 ## Datum:   01.08.2018
-## Ort:     01010000 01101111 01110100 01110011 01100100 01100001 01101101 
+## Ort:     01010000 01101111 01110100 01110011 01100100 01100001 01101101  
 
 #   dBBBBBb     dBBBBP  dBBBBBBP  .dBBBBP     dBBBBb  dBBBBBb     dBBBBBBb
 #       dB'    dBP.BP             BP             dBP       BB          dBP
