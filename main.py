@@ -136,7 +136,7 @@ def main():
 	EQ_HV2_h = (xi*kw_rho)
 
 	# Felder fuer Verteilungen
-	# DQ9 
+	# D2Q9 
 	dq_count = 9
 	#VL = np.random.randn(knotenMax)
 	VL = np.ones(dX*dY*dq_count)
