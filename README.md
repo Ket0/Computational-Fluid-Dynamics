@@ -11,3 +11,6 @@ http://www.seicko.de/data/Diplomarbeit/Diplomarbeit.pdf
 in die Programmiersprache Python zu überführen. Allerdings wird dies aufgrund der unterschiedlichen Spracheigenschaften keine ideale Konversion sein können.
 
 *.vtk Dateien mit Paraview öffnen.
+https://en.wikipedia.org/wiki/Computational_fluid_dynamics
+https://en.wikipedia.org/wiki/Boltzmann_equation
+https://en.wikipedia.org/wiki/Lattice_Boltzmann_methods
