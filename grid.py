@@ -5,7 +5,7 @@ print('Importiere: Wurzelklasse Gitter')
 import node as nd
 
 # Uniformes Gitter 
-# Bisher ist nur eine Art von Gitter
+# Bisher ist nur eine Art von Gitter 
 # realisiert
 
 """
