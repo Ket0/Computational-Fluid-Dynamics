@@ -21,7 +21,7 @@ class Knotentyp(enum.Enum):
 
 class node (object):
 	# def __init__(self):
-	def __init__(self, par_x, par_y, par_typ=Knotentyp(0) ):
+	def __init__(self, par_x=0.0, par_y=0.0, par_typ=Knotentyp(0) ):
 		self.xKoord = par_x
 		self.yKoord = par_y
 

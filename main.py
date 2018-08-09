@@ -6,7 +6,7 @@
 ##
 ## Author : Dipl. Wirtsch.-Ing. Stefan Eickholz (Fachbereich Maschinenbau)
 ## Datum:   01.08.2018
-## Ort:     01010000 01101111 01110100 01110011 01100100 01100001 01101101  
+## Ort:     01010000 01101111 01110100 01110011 01100100 01100001 01101101 
 
 #   dBBBBBb     dBBBBP  dBBBBBBP  .dBBBBP     dBBBBb  dBBBBBb     dBBBBBBb
 #       dB'    dBP.BP             BP             dBP       BB          dBP
@@ -69,7 +69,7 @@ def main():
 	meinGitter = gd.Gitter(par_xK=dX, par_yK=dY)
 
 	# Knoten des Gitters erzeugen
-	meinGitter.erzeugeGitter_v1()
+	meinGitter.erzeugeGitter_v2()
 
 	knotenMax = dX * dY
 	# Setze alle Knotentypen auf None
@@ -102,7 +102,38 @@ def main():
 	#    alle Punkte des Gitter sind hier gespeichert 
 	#    die Anzahl ist über len() bekannt.
 	#print('Knotenliste erstellt.')
+
+	# Datenstruktur?
 	meineKnotenliste = []
+
+	# 
+
+	# Stoffdaten
+	eta = 1
+	rho = 1
+	kw_rho = 1/rho
+
+	# Stroemungsdaten
+	ux0 = 1
+	u0y = 1
+	mach = 1
+	cs = 1
+	cs2 = 1
+	xi = 1
+	Zeitschritt = 1
+	omega = 1
+
+	# Gewichtungen der Gleichverteiung
+	tp0 = 4.0/9.0
+	tp1 = 1.0/9.0
+	tp2 = 1.0/36.0
+
+	# Hilfsvariablen
+	EQ_t0_h = (tp1/cs2)*rho
+	EQ_t45_h = (tp2/cs2)*rho
+	EQ_t0_h = (tp0/cs2)*rho
+	EQ_HV1_h = (xi*xi/cs2)
+	EQ_HV2_h = (xi*kw_rho)
 
 	# Felder fuer Verteilungen
 	# DQ9 
@@ -112,11 +143,19 @@ def main():
 	#VL = np.full ( (dY*dq_skalierung, dX*dq_skalierung), 1, dtype=float)
 	ZW = np.ones(dX*dY*dq_count)
 	EQ = np.ones(dX*dY*dq_count)
-	Druck = np.ones(dX*dY*dq_count)
-	VX = np.ones(dX*dY*dq_count)
-	VY = np.ones(dX*dY*dq_count)
 
-	#print(VL)
+	# Feldgroesse entsprich Knotenzahl
+	# jeder Knoten hat nur einen Wert fuer 
+	# Druck, vx, vy
+	Druck = np.ones(dX*dY)
+	VX = np.ones(dX*dY)
+	VY = np.ones(dX*dY)
+
+	# Feldinitialisierung
+	#
+	#
+
+
 
 	# Zahlvariable
 	i=0

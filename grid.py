@@ -5,7 +5,7 @@ print('Importiere: Wurzelklasse Gitter')
 import node as nd
 
 # Uniformes Gitter 
-# Bisher ist nur eine Art von Gitter 
+# Bisher ist nur eine Art von Gitter
 # realisiert
 
 """
@@ -63,6 +63,7 @@ class Gitter (object):
 		self.abstand = par_abstand
 		self.xk = par_xK
 		self.yk = par_yK
+		self.spacing = 1.0
 		print('Konstruktor Klasse Gitter aufgerufen')
 
 	# Klassenvariablen
@@ -90,6 +91,11 @@ class Gitter (object):
 	# Typ enthaelt einen Ganzzahlwert, der als Indikator  fuer den Typ steht
 	# Laenge entspricht der Knotenanzahl im Gitter
 	seq_Type = []
+
+	# Datenstruktur als eigener Typ?
+	seq_all = []
+
+	
 
 	# Instanzvariablen
 	# def __init__(self, par_xK, par_yK):
@@ -203,6 +209,79 @@ class Gitter (object):
 		# Ränder
 		# πάντα ῥεῖ
 
+	# Typpruefung im Bereich der Umschlingungskurve
+	def umschlingungskurve(self):
+		pass
+
+	def erzeugeGitter_v2(self):
+		print('Methode Gitter.erzeugeGitter_v1 aufgerufen')
+		# Zaehler
+		a=0
+		b=0
+
+		# Knoten in x-Richtung
+		kx_ = self.xk
+
+		# Flussknoten_Einlass in y-Richtung
+		ky_ = self.yk-1
+		
+		# # # 
+		# Nonee = 0
+		# Fluid = 1
+		# Wand = 2
+		# Solid = 3
+		# Periodisch = 4
+		# Einlass = 5
+		# Auslass = 6
+		# # # 
+
+		# Knoten(x,y,Typ)
+		# Wand unten (=Wand_0)
+		self.seq_all.append(nd.Wandknoten(0,0,2))
+
+		# Einlassknoten
+		b=1
+		while(b<self.yk):
+			self.seq_all.append(nd.Flussknoten_Einlass(0, b*self.spacing,5))
+			b += 1
+
+		# Rand
+		self.seq_all.append(nd.Wandknoten(0, self.yk*self.spacing, 2))
+
+		# Bereich Stroemungshindernis
+		self.umschlingungskurve()
+
+
+		
+
+		# unten links = Knoten Null
+		#while(a<kx_):
+		#	self.seq_all.append( nd.Wandknoten(0, a) )
+		#	a=a+1
+			# print(self.seq_Wand_0)
+
+		# Wand oben (=Wand_1)
+		# 
+		#while(b<ky_):
+		#	self.seq_all.append( nd.Wandknoten(self.yk, b) )
+		#	b=b+1
+			# print(self.seq_Wand_0)		
+
+		# Ränder
+
+		# Bereich der Umschlingungskurve
+			# Teste auf Knotentyp
+
+		# Ausflussknoten
+
+
+		# πάντα ῥεῖ
+
+	def printAll(self):
+		sMax=len(self.seq_all)
+		for iterator in range(0, sMax):
+			print(self.seq_all[iterator].get_koordinaten())
+
 	def getKnotenZahl(self):
 		zahl = len(self.seq_Wand_0)
 		return zahl	
@@ -215,6 +294,15 @@ class Gitter (object):
 	def punktHinzufuegen(self, mySequence, x_Node):
 		mySequence.append(x_Node)
 		return 
+
+	def punktInPolygon(self):
+		pass
+
+	def findeNachbarn(self):
+		pass
+
+	def wandAbstand(self):
+		pass
 
 
 
