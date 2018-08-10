@@ -6,61 +6,41 @@ class Eingabe(object):
 
 		self.seq_dict = dict()
 		# Stroemungsparameter
-		
+
 		# Oeffne Datei
 		f = open('parameter.txt', 'r')
 		
 		# Lies die Werte Zeile fuer Zeile ein
 		# und konvertiere die Strings in 
 		# Floatwerte
-		self.machZahl=f.readline()
-		self.charL=f.readline()
-		self.vx=f.readline()
-		self.vy=f.readline()
-		self.rho=f.readline()
-		self.eta=f.readline()
-		self.dX=f.readline()
-		self.dY=f.readline()
-		self.abstand=f.readline()
-		self.initVX=f.readline()
-		self.initVY=f.readline()
+		self.machZahl=float(f.readline())
+		self.charL=float(f.readline())
+		self.vx=float(f.readline())
+		self.vy=float(f.readline())
+		self.rho=float(f.readline())
+		self.eta=float(f.readline())
+		self.dX=float(f.readline())
+		self.dY=float(f.readline())
+		self.abstand=float(f.readline())
+		self.initVX=float(f.readline())
+		self.initVY=float(f.readline())
 
 		# Datei schliessen
 		f.close()
-
-		float(self.machZahl)
 		self.seq_dict['machZahl: '] = float(self.machZahl)
-
-		float(self.charL)
 		self.seq_dict['Charakteristische Laenge: '] = float(self.charL)
-
-		float(self.vx)
 		self.seq_dict['Stroemungsgeschwindigkeit in X-Richtung: '] = self.vx
-
-		float(self.vy)
 		self.seq_dict['Stroemungsgeschwindigkeit in Y-Richtung: '] = self.vy
-
-		float(self.rho)
 		self.seq_dict['Dichte: '] = self.rho
-
-		float(self.eta)
 		self.seq_dict['Dynamische Zaehigkeit: '] = self.eta
 
 		# Gitter
-		float(self.dX)
 		self.seq_dict['Gitterknoten X-Richtung: '] = self.dX
-
-		float(self.dY)
 		self.seq_dict['Gitterknoten Y-Richtung: '] = self.dY
-
-		float(self.abstand)
 		self.seq_dict['Gitterabstand: '] = self.abstand
 
 		# Initialisierungsdaten
-		float(self.initVX)
 		self.seq_dict['Initialisierungsgeschwindigkeit X-Richtung: '] = self.initVX
-
-		float(self.initVY)
 		self.seq_dict['Initialisierungsgeschwindigkeit Y-Richtung: '] = self.initVY
 
 		self.maxX=0.0
