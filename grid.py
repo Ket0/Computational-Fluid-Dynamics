@@ -245,8 +245,14 @@ class Gitter (object):
 			self.seq_all.append(nd.Flussknoten_Einlass(0, b*self.spacing,5))
 			b += 1
 
-		# Rand
+		# Wand oben
 		self.seq_all.append(nd.Wandknoten(0, self.yk*self.spacing, 2))
+
+		# naechste Reihe
+		# a=1
+		a += 1
+		#while (a*spacing < )
+
 
 		# Bereich Stroemungshindernis
 		self.umschlingungskurve()

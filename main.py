@@ -53,8 +53,11 @@ def nachverarbeitung():
 def main():
 	# Erzeuge Ausgabe Objektreferenz
 	ausgabe = ag.Ausgabe()
+
 	# Erzeuge Eingabe Objektreferenz
 	eingabe = eg.Eingabe()
+	#eingabe.schreibeWerte()
+
 	# Erzeuge Zeit-Objekt
 	#
 
@@ -92,9 +95,6 @@ def main():
 
 	# check_anzahl_knoten = mN.getKnotenZahl()
 	# print(check_anzahl_knoten) # gibt 10 aus, check
-
-	# for i in range(9):
-		# print (mN.seq_Wand_0[i].get_koordinaten() )
 
 	#  - grid.distanz()
 
@@ -136,7 +136,7 @@ def main():
 	EQ_HV2_h = (xi*kw_rho)
 
 	# Felder fuer Verteilungen
-	# D2Q9 
+	# D2Q9-
 	dq_count = 9
 	#VL = np.random.randn(knotenMax)
 	VL = np.ones(dX*dY*dq_count)
