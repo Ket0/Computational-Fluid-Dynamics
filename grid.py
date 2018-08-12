@@ -66,6 +66,9 @@ class Gitter (object):
 		self.spacing = 1.0
 		print('Konstruktor Klasse Gitter aufgerufen')
 
+		
+		
+
 	# Klassenvariablen
 	#
 	# List Datenstruktur aller Knoten im Gitter

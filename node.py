@@ -24,35 +24,6 @@ class node (object):
 	def __init__(self, par_x=0.0, par_y=0.0, par_typ=Knotentyp(0) ):
 		self.xKoord = par_x
 		self.yKoord = par_y
-
-		# def __init__(par_druck, par_init_vx, par_init_vy, par_rho, par_cs, par_xi, par_omega, par_u0x, par_u0y, par_eta, par_abstand, par_charL):
-		# par_ = Parameter
-		# self.druck   = par_druck
-		# self.init_vx = par_init_vx
-		# self.init_vy = par_init_vy
-		# self.rho     = par_rho
-		# self.cs      = par_cs
-		# self.xi      = par_xi
-		# self.omega   = par_omega
-		# self.u0x     = par_u0x
-		# self.u0y     = par_u0y
-		# self.eta     = par_eta
-		# self.abstand = par_abstand
-		# self.charL   = par_charL
-
-
-
-		"""
-		def __init__(self):
-        	self.attribute = {
-            	'druck':     ,
-            	'init_vx':  ,
-            	'init_vy':
-        }
-
-    	def __getitem__(self,i):
-        	return self.info[i]
-		"""
 	
 	def get_x_koordinate(self):
 		return self.xKoord
@@ -67,26 +38,32 @@ class node (object):
 	def get_attributes(self):
 		return self.xKoord, self.yKoord, self.typ
 
-	def transport():
+	def transport(self):
 		pass
 	
-	def kollidiere():
+	def kollidiere(self):
 		pass
 	
-	def kalkuliereGleichverteilung():
+	def kalkuliereGleichverteilung(self):
 		pass
 	
-	def kalkuliereErgebnis():
+	def kalkuliereErgebnis(self):
 		pass
+
+	def set_ZWW(wert, i):
+		pass
+
+	def set_VTL(wert, i):
+		pass 
+
+
+
 
 # Subknoten
 
 # PR Knoten
 #
-print('Importiere: Subklasse Fluidknoten')
-class Fluidknoten(node):
-	def __init__(self, par_x, par_y, typ=Knotentyp(1) ):
-		super().__init__(par_x, par_y)
+
 
 # Wandknoten
 #

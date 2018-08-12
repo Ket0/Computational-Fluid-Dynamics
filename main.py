@@ -33,6 +33,10 @@ import numpy as np
 
 # from node import *
 import node as nd
+import einlassknoten as elk
+import fluidknoten as flk
+import wandknoten as wdk
+import auslassknoten as ask
 # import grid
 # from grid import *
 import grid as gd
@@ -40,15 +44,17 @@ import eingabe as eg
 import ausgabe as ag
 import hilfsfunktionen as hlf
 
+
+# Parameter einlesen
+# Objekte erzeugen
 def vorbereitungen():
 	print('# # # Vorverarbeitung / / / \n')
-	# Parameter einlesen
-	# Objekte erzeugen
 	pass
 
 def nachverarbeitung():
 	# Post-Processing
 	print('\n \ \ \ Nachverarbeitung # # #\n')
+	pass
 
 def main():
 	# Erzeuge Ausgabe Objektreferenz
@@ -61,14 +67,20 @@ def main():
 	# Erzeuge Zeit-Objekt
 	#
 
+
+
 	# Gitter
 	# Gitter Parameter waehlen
-	abstand = 1
-	dY = 7  # Breite
-	dX = 4 * dY # Laenge
+	dY = eingabe.get_dY()
+	print("dY: ", dY)
+
+	dX = eingabe.get_dX()
+	print("dX: ", dX)
+
+	abst = eingabe.get_abstand()
+	print("Knotenabstand: ", abst)
 
 	# Gitter Objekt erzeugen
-	# meinGitter = grid.Gitter(Eingabe_obj, Eingabe_obj.abstand, Eingabe_obj.dX, Eingabe_obj.dY)
 	meinGitter = gd.Gitter(par_xK=dX, par_yK=dY)
 
 	# Knoten des Gitters erzeugen
@@ -106,22 +118,8 @@ def main():
 	# Datenstruktur?
 	meineKnotenliste = []
 
-	# 
-
 	# Stoffdaten
-	eta = 1
-	rho = 1
 	kw_rho = 1/rho
-
-	# Stroemungsdaten
-	ux0 = 1
-	u0y = 1
-	mach = 1
-	cs = 1
-	cs2 = 1
-	xi = 1
-	Zeitschritt = 1
-	omega = 1
 
 	# Gewichtungen der Gleichverteiung
 	tp0 = 4.0/9.0
@@ -191,9 +189,3 @@ if __name__ == '__main__':
 	nachverarbeitung()
 
 	print('\nProgrammende')
-
-
-
-	# abstand = 0.015
-	# dX = 2.5
-	# dY = 0.41

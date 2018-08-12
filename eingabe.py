@@ -84,6 +84,75 @@ class Eingabe(object):
 		for parameter, wert in self.seq_dict.items():
 			print(parameter, wert)
 
+	def get_dX(self):
+		return self.dX
+
+	def get_dY(self):
+		return self.dY
+
+	def get_abstand(self):
+		return self.abstand
+
+	def get_charL(self):
+		return self.charL
+
+	def get_polygonzug(selk):
+		pass
+
+	def get_minX(self):
+		return self.minX
+
+	def get_minY(self):
+		return self.minY
+
+	def get_maxX(self):
+		return self.maxX
+
+	def get_maxY(self):
+		return self.maxY
+
+	def get_u0x(self):
+		return self.u0x
+
+	def get_u0y(self):
+		return self.u0y
+
+	def get_machZahl(self):
+		return self.machZahl
+
+	def get_xi(self):
+		return self.xi
+
+	def get_cs(self):
+		return self.cs
+
+	def get_timeStep(self):
+		return self.timeStep
+
+	def get_omega(self):
+		return self.omega
+
+	def get_rho(self):
+		return self.rho
+
+	def get_eta(self):
+		return self.eta
+
+	def get_initDruck(self):
+		return self.initDruck
+
+	def get_initVX(self):
+		return self.initVX
+
+	def get_initVY(self):
+		return self.initVY
+
+
+
+
+
+
+
 
 """
 # Druck muss berechnet werden
