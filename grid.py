@@ -3,6 +3,9 @@
 print('Importiere: Wurzelklasse Gitter')
 #from node import *
 import node as nd
+import wandknoten as wdk
+import einlassknoten as elk
+import math as math
 
 # Uniformes Gitter 
 # Bisher ist nur eine Art von Gitter
@@ -63,11 +66,7 @@ class Gitter (object):
 		self.abstand = par_abstand
 		self.xk = par_xK
 		self.yk = par_yK
-		self.spacing = 1.0
 		print('Konstruktor Klasse Gitter aufgerufen')
-
-		
-		
 
 	# Klassenvariablen
 	#
@@ -221,6 +220,9 @@ class Gitter (object):
 		# Zaehler
 		a=0
 		b=0
+		index=0
+		imin=0
+		imax=0
 
 		# Knoten in x-Richtung
 		kx_ = self.xk
@@ -240,21 +242,21 @@ class Gitter (object):
 
 		# Knoten(x,y,Typ)
 		# Wand unten (=Wand_0)
-		self.seq_all.append(nd.Wandknoten(0,0,2))
+		self.seq_all.append(wdk.Wandknoten(0,0,2))
 
 		# Einlassknoten
 		b=1
 		while(b<self.yk):
-			self.seq_all.append(nd.Flussknoten_Einlass(0, b*self.spacing,5))
+			self.seq_all.append(elk.Flussknoten_Einlass(0, b*self.abstand,5))
 			b += 1
 
 		# Wand oben
-		self.seq_all.append(nd.Wandknoten(0, self.yk*self.spacing, 2))
+		self.seq_all.append(wdk.Wandknoten(0, self.yk*self.abstand, 2))
 
 		# naechste Reihe
 		# a=1
 		a += 1
-		#while (a*spacing < )
+		#while (a*self.abstand< )
 
 
 		# Bereich Stroemungshindernis

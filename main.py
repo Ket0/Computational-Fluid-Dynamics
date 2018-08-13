@@ -37,12 +37,14 @@ import einlassknoten as elk
 import fluidknoten as flk
 import wandknoten as wdk
 import auslassknoten as ask
+from linie import *
 # import grid
 # from grid import *
 import grid as gd
 import eingabe as eg
 import ausgabe as ag
 import hilfsfunktionen as hlf
+import math as ma
 
 
 # Parameter einlesen
@@ -68,28 +70,35 @@ def main():
 	#
 
 
-
 	# Gitter
+	#
 	# Gitter Parameter waehlen
 	dY = eingabe.get_dY()
 	print("dY: ", dY)
-
 	dX = eingabe.get_dX()
 	print("dX: ", dX)
-
 	abst = eingabe.get_abstand()
 	print("Knotenabstand: ", abst)
 
 	# Gitter Objekt erzeugen
-	meinGitter = gd.Gitter(par_xK=dX, par_yK=dY)
+	meinGitter = gd.Gitter(par_xK=dX, par_yK=dY, par_abstand=abst)
 
 	# Knoten des Gitters erzeugen
 	meinGitter.erzeugeGitter_v2()
 
-	knotenMax = dX * dY
-	# Setze alle Knotentypen auf None
-	for iterator in range(0, knotenMax):
-		meinGitter.seq_Type.append(3)
+	# # # 
+	# Nonee = 0
+	# Fluid = 1
+	# Wand = 2
+	# Solid = 3
+	# Periodisch = 4
+	# Einlass = 5
+	# Auslass = 6
+	# # # 
+
+	knotenMax=eingabe.get_anzahlKnoten()
+	for iterator in range(0, int(knotenMax)):
+		meinGitter.seq_Type.append(0)
 
 	# Schreibe Knoten des Gitters in Ausgabe
 	# hlf.printGitter2(meinGitter)
@@ -99,6 +108,11 @@ def main():
 	#k1 = nd.node(10,10)
 	#w1 = nd.Wandknoten(10,10)
 	#f1 = nd.Fluidknoten(10,10)
+
+	# Geometrie Stroemungshindernis aufbauen
+	print("Hindernisgeometrie einlesen")
+	eingabe.get_poly()
+	print("Hindernisgeometrie einlesen abgeschlossen")
 
 	# Schreibe die erste VTK Datei heraus ("T0.vtk")
 	# Beachte auch den Dateikopf
@@ -119,7 +133,7 @@ def main():
 	meineKnotenliste = []
 
 	# Stoffdaten
-	kw_rho = 1/rho
+	kw_rho = 1/eingabe.get_rho()
 
 	# Gewichtungen der Gleichverteiung
 	tp0 = 4.0/9.0
@@ -127,11 +141,12 @@ def main():
 	tp2 = 1.0/36.0
 
 	# Hilfsvariablen
-	EQ_t0_h = (tp1/cs2)*rho
-	EQ_t45_h = (tp2/cs2)*rho
-	EQ_t0_h = (tp0/cs2)*rho
-	EQ_HV1_h = (xi*xi/cs2)
-	EQ_HV2_h = (xi*kw_rho)
+	cs2=eingabe.get_cs()**2
+	EQ_t0_h = (tp1/cs2)*eingabe.get_rho()
+	EQ_t45_h = (tp2/cs2)*eingabe.get_rho()
+	EQ_t0_h = (tp0/cs2)*eingabe.get_rho()
+	EQ_HV1_h = ((eingabe.get_xi()**2)/cs2)
+	EQ_HV2_h = (eingabe.get_xi()*kw_rho)
 
 	# Felder fuer Verteilungen
 	# D2Q9-
