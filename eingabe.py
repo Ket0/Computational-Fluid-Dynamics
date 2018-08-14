@@ -122,28 +122,26 @@ class Eingabe(object):
 				pass
 		return i + 1
 
-	def teste_Knotengleichheit_func1(self, k1, k2):
-		print("Teste Geometrie auf Geschlossenheit")
-		
+	# Vergleicht zwei Konten auf Identitaet
+	# Liefert True, wenn identisch
+	# Sonst False
+	def teste_Knotengleichheit_func1(self, k1, k2):		
 		# Teste X-Koordinate
-		if( k1.get_x_koordinate() != k2.get_x_koordinate() ):
-			return False
-		else: 
-			return True
-		
-		# Teste Y-Koordinate
-		if ( k1.get_y_koordinate() != k2.get_y_koordinate() ):
-			return False
-		else:
-			return True
+		if( k1.get_x_koordinate() == k2.get_x_koordinate() ):
+			if( k1.get_y_koordinate() == k2.get_y_koordinate() ):
+				#print("True")
+				return True
+			else: 
+				#print("False")
+				return False
 
 	def teste_Knotengleichheit_func2(self):
-		print("Teste Geometrie auf Geschlossenheit")
+		print(" Teste Geometrie auf Geschlossenheit")
 
 		# Alle Knoten in einer Liste speichern
 		f = open('geometrie.txt', 'r')
 		alleKnoten = f.readlines()
-		print(alleKnoten)
+		#print(alleKnoten)
 		f.close()
 
 		# Laenge der Liste bestimmen
@@ -166,98 +164,138 @@ class Eingabe(object):
 			print("{}{}".format(ky1, kyn))
 			return False
 		else:
+			print("  Testergebnis: ok")
 			return True
 
 
 	def get_poly(self):
+		print("\nHindernisgeometrie einlesen")
 
 		self.seq_list = []
+
+		# 1
+		# Diese Tests sollte eigentlich in eine
+		# eigene Funktion...
 
 		# In der Datei liegen die Koordinaten
 		# des Knoten in der Form x,y,x,y,x,y...
 		f = open('geometrie.txt', 'r')
-		
+
+		# Speicher alle Werte der Datei
+		# einer Datenstruktur
+		alleKnoten = f.readlines()
+		f.close()
+
 		# Pruefe, ob die Geometrie in Ordnung ist...
 		dateiname="geometrie.txt"
 		zz=self.file_len(dateiname) #ZeilenZahl	
 		
 		# Zeilenzahl muss ohne Rest teilbar sein!
 		# Sonst wuerde eine Koordinate fehlen
-		print("Teste Koordinaten auf Vollstaendigkeit")
+		print(" Teste Koordinaten auf Vollstaendigkeit")
 		if (zz%2)!=0:
-			print("Fehler: Stroemungshindernis hat ungerade Koordinatenzahl!")
+			print("  Fehler: Stroemungshindernis hat ungerade Koordinatenzahl!")
 			sys.exit()
 		else:
-			print(zz%2)
+			#print(zz%2)
+			print("  Testergebnis: ok")
 		
 		# Mininum sind drei Knoten, daher muessen mindestens 
 		# sechs Koordinaten vorhanden sein.
-		print("Teste Koordinaten auf Knotenminimum drei")
+		print(" Teste Koordinaten auf Knotenminimum drei")
 		if zz<=6:
-			print("Fehler: Zu wenig Knoten um Stroemungshindernis aufzubauen!")
+			print("  Fehler: Zu wenig Knoten um Stroemungshindernis aufzubauen!")
 			sys.exit()
 		else:
-			print(zz)
+			#print(zz)
+			print("  Testergebnis: ok")
 
-		print("Schliesse Datei")
-		f.close()
+		# Teste auf Ueberschneidungsfreiheit!
+		# fehlt hier noch
 
+		# Ist die Geometrie geschlossen
 		self.teste_Knotengleichheit_func2()
 
 
+		# 2
+		# Lies begrenzendes Viereck ein
+		# alle X-Werte in Datenstruktur
+		#
+		# minX, maxX bestimmen
+		#
+		tmp_list1 = []
+		for iterator in range(0, zz-1, 2):
+			i = alleKnoten[iterator]
+			tmp_list1.append(float(i))
+			self.minX=min(tmp_list1)
+			self.maxX=max(tmp_list1)
 
+		# minY, minX bestimmen
+		#
+		# setze Startwert auf '1', dann
+		# jeden 2. Wert
+		tmp_list2 = []
+		for iterator in range(1, zz-1, 2):
+			i = alleKnoten[iterator]
+			tmp_list2.append(float(i))
+			self.minY=min(tmp_list2)
+			self.maxY=max(tmp_list2)
 
-		# Letzer Knoten ('n) muss wieder dem ersten Knoten ('0') entsprechen
-		# Koordinaten Knoten Null
-		#koordinate_1_x=f.readline()
-		#koordinate_1_y=f.readline()
+		# print("{} {} {} {}".format(self.minX, self.maxX, self.minY, self.maxY))
 
-		# Koordinaten Knoten 'n'
-		#koordinate_n_x=f.readline()
-		#koordinate_n_y=f.readline()
+		# 3
+		# Speichere Linien (=Knotenpaare) in
+		# Datenstruktur
+		f = open('geometrie.txt', 'r')
+		
+		# Anzahl an Knoten ist ZeilenZahl zz halbe
+		paarZahl = int(zz/2)
+		# Anzahl an Linien ist paarZahl-1
+		linienZahl = paarZahl-1
 
+		zaehler=0
+		while(zaehler<linienZahl):
+			# Die ersten vier Koordinaten
+			if zaehler==0:
+				x1 = f.readline() 
+				y1 = f.readline()
+				x2 = f.readline()
+				y2 = f.readline()
+			else:
+				# Vorgaenger zuweisen
+				x1=x2
+				y1=y2
+				# Lese die naechsten zwei Koordinaten
+				x2 = f.readline()
+				y2 = f.readline()
 
+			# Erzeuge Knoten
+			k1 = node(x1,y1, 2)
+			#print(k1.print_koordinaten())
+			k2 = node(x2,y2, 2) 
+			#print(k2.print_koordinaten())
 
+			# Wenn Knoten nicht gleich, erzeuge Linie und 
+			# speichere Linie in Datenstruktur
+			# Andernfalls stop
+			if self.teste_Knotengleichheit_func1(k1, k2) != True:
+				# Erzeuge Linie
+				l1 = Linie(k1, k2)
+				# Fuege Linie in Datenstruktur ein
+				self.seq_list.append(l1)
+			else:
+				print("Knoten sind identisch, letzte Linie hinzugefuegt!")
+				break
 
-		# Erzeuge Testknoten
-		#print("Erzeuge Testknoten")
-		#k_test_1=node(koordinate_1_x, koordinate_1_y)
-		#k_test_n=node(koordinate_n_x, koordinate_n_y)
+			# Naechste Linie
+			zaehler += 1
 
-		#if self.teste_Knotengleichheit(k_test_1, k_test_n) != True:
-	#		print("Fehler: Hindernisgeometrie nicht geschlossen!")
-	#		print("Knoten 1: ")
-	#		k_test_1.print_koordinaten()
-	#		print("Knoten n: ")
-	#		k_test_n.print_koordinaten()
-	#		sys.exit()
-	#	else:
-	#		pass
+		f.close()
 
-		# lese knoten 1
-		#  x, y
-		# lese knoten 2
-		#  x, y
-		# erzeuge neue Linie 
-		# und speichere die Linie
-		# in der Liste 
-				
-		# for iterator in range(0, int(zeilenZahl)):
-		# 	x1=f.readline()
-		# 	y1=f.readline()
-		# 	k1=node(x1,y1)
-
-		# 	x2=f.readline()
-		# 	y2=f.readline()
-		# 	k2=node(x2,y2)
-
-		# 	linie=linie(k1,k2)
-		# 	self.seq_list.append(linie)
-
-
-
-		#self.node.set_x_koordinate(f.readline)
-		#self.node_one.set_x_koordinate(f.readline)
+		#print(self.seq_list)
+		#print(self.seq_list[0].get_punkte())
+		#print("Schliesse Datei")
+		print("Hindernisgeometrie einlesen abgeschlossen")
 
 
 	def get_minX(self):
@@ -308,19 +346,5 @@ class Eingabe(object):
 	def get_initVY(self):
 		return self.initVY
 
-
-
-
-
-
-
-
-"""
-# Druck muss berechnet werden
-cs_ = sqrt(u0x*u0y + u0y*u0y) / machZahl
-initialisierungsDruck = cs*cs*rho
-# Weiterhin berechnet wird
-xi = 
-Zeitschritt = 
-omega = 
-"""
+	def get_geometrie(self):
+		return self.seq_list
