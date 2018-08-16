@@ -69,6 +69,15 @@ def main():
 	# Erzeuge Zeit-Objekt
 	#
 
+	# # # 
+	# Nonee = 0
+	# Fluid = 1
+	# Wand = 2
+	# Solid = 3
+	# Periodisch = 4
+	# Einlass = 5
+	# Auslass = 6
+	# # # 
 
 	# Gitter
 	#
@@ -88,47 +97,17 @@ def main():
 	meinGitter.erzeugeGitter_v2()
 	#meinGitter.print_All()
 
-	# # # 
-	# Nonee = 0
-	# Fluid = 1
-	# Wand = 2
-	# Solid = 3
-	# Periodisch = 4
-	# Einlass = 5
-	# Auslass = 6
-	# # # 
-
-	print(" \nErstelle Typfeld")
-	knotenMax=eingabe.get_anzahlKnoten()
-	for iterator in range(0, int(knotenMax)):
-		if meinGitter.seq_all[iterator].get_type() == 2:
-			meinGitter.seq_Type.append(0)
-		elif meinGitter.seq_all[iterator].get_type() == 5:
-			meinGitter.seq_Type.append(5)
-		elif meinGitter.seq_all[iterator].get_type() == 1:
-			meinGitter.seq_Type.append(1)
-		elif meinGitter.seq_all[iterator].get_type() == 6:
-			meinGitter.seq_Type.append(6)
-		elif meinGitter.seq_all[iterator].get_type() == 3:
-			meinGitter.seq_Type.append(3)
-
-	for iterator in range(0, eingabe.get_dY()*2):
-		print("Knotentyp: ", meinGitter.seq_all[iterator].get_type())
-
-
-	# Schreibe Knoten des Gitters in Ausgabe
-	#hlf.printGitter2(meinGitter)
-
-	#print(meinGitter.seq_Wand_0[1].get_koordinaten())
-
-
+	# Erstelle Feld mit Typangabe
+	hlf.erstelleTypfeld(meinGitter, eingabe)
+	#hlf.printTypfeld(meinGitter, eingabe)
+	#hlf.laengeTypfeld(meinGitter, eingabe)
 
 	# Geometrie Stroemungshindernis aufbauen
-	#eingabe.get_poly()
+	eingabe.get_poly()
 	
 	# Schreibe die erste VTK Datei heraus ("T0.vtk")
 	# Beachte auch den Dateikopf
-	#ausgabe.schreibeVTK(meinGitter)
+	ausgabe.schreibeVTK(meinGitter)
 
 
 	# check_anzahl_knoten = mN.getKnotenZahl()
