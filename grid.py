@@ -240,10 +240,7 @@ class Gitter (object):
 		# Einlass = 5
 		# Auslass = 6
 		# # # 
-
-		# 1 Einlass
-		# 
-		print(" Einlassknoten")
+		
 		self.seq_all.append(wdk.Wandknoten(0 ,0.0 ,2))
 		b=1
 		while b<(self.yk-1):
@@ -251,18 +248,11 @@ class Gitter (object):
 			#index += 1
 			b += 1
 		self.seq_all.append(wdk.Wandknoten(0, (self.yk-1)*self.abstand, 2))
-
-		# 2 Kanal
-		#
-		print(" Kanal")
 		a=1
 		#b=0
 		#c=1
 		while (a*self.abstand)<(self.xk-1):
 			self.seq_all.append(wdk.Wandknoten(a*self.abstand, 0, 2 ))
-			
-			# In der Mitte des Kanals befinden sich nur 
-			# Fluidknoten
 			c=1
 			b=1
 			while c<(self.yk-1):
@@ -274,16 +264,7 @@ class Gitter (object):
 				# 	print("Haelfte aller Knoten generiert")
 			self.seq_all.append(wdk.Wandknoten(a*self.abstand, (self.yk-1)*self.abstand, 2 ) )
 			a += 1
-
-		# # 3
-		# # Bereich Stroemungshindernis
-		# # hier wird es haarig
-		# # self.umschlingungskurve()
-
-		# 4 Auslass
-		#
-		print(" Auslass")
-		a=self.xk-1 # Letzte Reihe
+		a=self.xk-1
 		self.seq_all.append(wdk.Wandknoten(a*self.abstand, 0, 2 ) )
 		b=1
 		while b<(self.yk-1):
