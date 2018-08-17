@@ -5,6 +5,7 @@ print('Importiere: Wurzelklasse Gitter')
 import node as nd
 import wandknoten as wdk
 import einlassknoten as elk
+import fluidknoten as flk
 import math as math
 
 # Uniformes Gitter 
@@ -62,15 +63,49 @@ Oben Mitte Unten
 #print('Importiere: Subklasse UniformesGitter')
 # Uniformes Gitter
 class Gitter (object):
-	def __init__(self, par_xK, par_yK, par_abstand=1):
+	def __init__(self, par_xK=128, par_yK=32, par_abstand=1):
 		self.abstand = par_abstand
 		self.xk = par_xK
 		self.yk = par_yK
-		print('Konstruktor Klasse Gitter aufgerufen')
+		#print('Konstruktor Klasse Gitter aufgerufen')
 
-	# Klassenvariablen
-	#
-	# List Datenstruktur aller Knoten im Gitter
+		# 0
+		# hier sollte eine Art Knotenbegrenzung 
+		# eingebaut werden, damit nicht zu 
+		# viel Speicher belegt wird!
+		# zb nicht mehr als 1.000k Knoten
+
+		# 1 
+		# korrigiere die Gitterparameter
+		# caste auf jedenfall auf Ganzzahl
+		# floor rundet immer ab, hier sollte 
+		# ein vielfaches der nvidia warp size 
+		# von 32 einzustellen!
+		# 
+		# print(self.abstand) # 1.0
+		# print(par_xK) # 128
+		# print(par_yK) # 32
+		x=math.floor(par_xK/par_abstand)
+		print("x:", x)
+		# x=round(par_xK/par_abstand)
+		# print("x:", x)
+
+		# test auf Vielfache
+		if self.xk % 32 == 0:
+			self.xk = int(x)
+		else:
+			while (self.xk%32)!= 0:
+				self.xk += 1
+		# Bestimme Abstand
+		self.abstand = par_xK/self.xk
+		print("Abstand: ", self.abstand)
+		# jeder Kanals vier mal so 
+		# lang, wie breit
+		y=int(0.25*self.xk)
+		print("y: ", y)
+		self.yk=y
+
+		self.anzahlKnoten = self.xk*self.yk
 
 	# Fluid (~99% aller Knoten)
 	seq_Fluid = []
@@ -96,40 +131,6 @@ class Gitter (object):
 
 	# Datenstruktur als eigener Typ?
 	seq_all = []
-
-	
-
-	# Instanzvariablen
-	# def __init__(self, par_xK, par_yK):
-		# super().__init__(self, par_xK, par_yK)
-	
-		# Abstand der Knoten 
-		# Im Prototyp v0.1 entspricht der Abstand
-		# dem Betrag 1
-		#
-		# self.abstand = par_abstand
-		
-		# xk = X-Knoten
-		# self.xk = par_xK
-		
-		# yk = Y-Knoten
-		# self.yk = par_yK
-
-	# Berechne gerade Anzahl an Knoten
-	# self.anzahl_x_knoten = Eingabe.dX/self.abstand
-
-	# Aktualisiere Abstand
-	# self.abstand = Eingabe.dx/self.anzahl_x_knoten
-
-	#
-	# self.anzahl_x_knoten = self.anzahl_x_knoten+1
-
-	#
-	# self.anzahl_y_knoten = Eingabe.dy/self.abstand
-
-	#
-	# self.anzahl_y_knoten = self.anzahl_y_knoten+1
-
 
 	# Fuer Knoten, die sich im Graubereich befinden 
 	# Prueft Knotentyp
@@ -216,7 +217,7 @@ class Gitter (object):
 		pass
 
 	def erzeugeGitter_v2(self):
-		print('Methode Gitter.erzeugeGitter_v1 aufgerufen')
+		print('\nMethode Gitter.erzeugeGitter_v1 aufgerufen')
 		# Zaehler
 		a=0
 		b=0
@@ -240,62 +241,66 @@ class Gitter (object):
 		# Auslass = 6
 		# # # 
 
-		# Knoten(x,y,Typ)
-		# Wand unten (=Wand_0)
-		self.seq_all.append(wdk.Wandknoten(0,0,2))
-
-		# Einlassknoten
-		b=1
-		while(b<self.yk):
-			self.seq_all.append(elk.Flussknoten_Einlass(0, b*self.abstand,5))
-			b += 1
-
-		# Wand oben
-		self.seq_all.append(wdk.Wandknoten(0, self.yk*self.abstand, 2))
-
-		# naechste Reihe
-		# a=1
-		a += 1
-		#while (a*self.abstand< )
-
-
-		# Bereich Stroemungshindernis
-		self.umschlingungskurve()
-
-
-		
-
-		# unten links = Knoten Null
-		#while(a<kx_):
-		#	self.seq_all.append( nd.Wandknoten(0, a) )
-		#	a=a+1
-			# print(self.seq_Wand_0)
-
-		# Wand oben (=Wand_1)
+		# 1 Einlass
 		# 
-		#while(b<ky_):
-		#	self.seq_all.append( nd.Wandknoten(self.yk, b) )
-		#	b=b+1
-			# print(self.seq_Wand_0)		
+		print(" Einlassknoten")
+		self.seq_all.append(wdk.Wandknoten(0 ,0.0 ,2))
+		b=1
+		while b<(self.yk-1):
+			self.seq_all.append(elk.Flussknoten_Einlass(0, b*self.abstand,5))
+			#index += 1
+			b += 1
+		self.seq_all.append(wdk.Wandknoten(0, (self.yk-1)*self.abstand, 2))
 
-		# Ränder
+		# 2 Kanal
+		#
+		print(" Kanal")
+		a=1
+		#b=0
+		#c=1
+		while (a*self.abstand)<(self.xk-1):
+			self.seq_all.append(wdk.Wandknoten(a*self.abstand, 0, 2 ))
+			
+			# In der Mitte des Kanals befinden sich nur 
+			# Fluidknoten
+			c=1
+			b=1
+			while c<(self.yk-1):
+				self.seq_all.append(flk.Fluidknoten(a*self.abstand, b*self.abstand, 1))
+				#index += 1
+				c += 1
+				b += 1
+				# if len(self.seq_all) == (self.anzahlKnoten/2):
+				# 	print("Haelfte aller Knoten generiert")
+			self.seq_all.append(wdk.Wandknoten(a*self.abstand, (self.yk-1)*self.abstand, 2 ) )
+			a += 1
 
-		# Bereich der Umschlingungskurve
-			# Teste auf Knotentyp
+		# # 3
+		# # Bereich Stroemungshindernis
+		# # hier wird es haarig
+		# # self.umschlingungskurve()
 
-		# Ausflussknoten
-
-
+		# 4 Auslass
+		#
+		print(" Auslass")
+		a=self.xk-1 # Letzte Reihe
+		self.seq_all.append(wdk.Wandknoten(a*self.abstand, 0, 2 ) )
+		b=1
+		while b<(self.yk-1):
+			self.seq_all.append(wdk.Wandknoten( a*self.abstand, b*self.abstand, 6) )
+			b += 1
+		self.seq_all.append(wdk.Wandknoten( a*self.abstand, (self.yk-1)*self.abstand, 2 ))
+		print("# # # Knotenliste erstellt!")
 		# πάντα ῥεῖ
 
-	def printAll(self):
+	def print_All(self):
 		sMax=len(self.seq_all)
 		for iterator in range(0, sMax):
-			print(self.seq_all[iterator].get_koordinaten())
+			#print(self.seq_all[iterator].get_koordinaten())
+			print("{} {}".format(self.seq_all[iterator].get_koordinaten(), self.seq_all[iterator].get_type()))
 
 	def getKnotenZahl(self):
-		zahl = len(self.seq_Wand_0)
-		return zahl	
+		return self.anzahlKnoten 
 
 	def getAnzahlSolidknoten(self):
 		zahl = len(self.seq_Wand_0)
