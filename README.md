@@ -12,7 +12,7 @@ CFD Code, der einen Gitter-Boltzmann-Löser für einen 2D Strömungsgebiet ausf�
 
 In diesem Repository versuche ich, den C++ Code meiner Diplomarbeit   
 
-http://www.seicko.de/data/Diplomarbeit/Diplomarbeit.pdf
+https://www.seicko.de/data/Diplomarbeit/Diplomarbeit.pdf
 
 in die Programmiersprache Python zu überführen. Allerdings wird dies aufgrund der unterschiedlichen Spracheigenschaften keine ideale Konversion sein können.
 
